@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "online-shopping-fe43b": {
+      "hosting": {
+        "online-shopping": [
+          "online-shopping-fe43b"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "online-shopping-fe43b"
+  }
+}
