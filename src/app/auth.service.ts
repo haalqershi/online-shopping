@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-  user$: Observable<firebase.User | unknown>;
+  user$: Observable<firebase.User | any>;
 
 
   constructor(
@@ -26,6 +26,9 @@ export class AuthService {
   }
 
   login(){
+    let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
+    localStorage.setItem('returnUrl', returnUrl);
 
+    this.angularFireAuth.signInWithRedirect(new firebase.GoogleAuthProvider());   
   }
 }

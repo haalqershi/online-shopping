@@ -42,6 +42,10 @@ const paths = [
   {
     path: 'orders',
     component: OrdersComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   }
 ]
 

@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor(public authService: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -16,5 +16,4 @@ export class NavbarComponent implements OnInit {
   logout(){
     this.authService.logout();
   }
-
 }
