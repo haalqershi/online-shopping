@@ -15,7 +15,31 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { MatSliderModule } from '@angular/material/slider';
+import { RouterModule } from '@angular/router';
 
+
+const paths = [
+  {
+    path: '',
+    component: HomeComponent
+  },
+  {
+    path: 'products',
+    component: ProductsComponent
+  },
+  {
+    path: 'cart',
+    component: ShoppingCartComponent
+  },
+  {
+    path: 'checkout',
+    component: CheckOutComponent
+  },
+  {
+    path: 'orders',
+    component: OrdersComponent
+  }
+]
 
 @NgModule({
   declarations: [
@@ -35,7 +59,8 @@ import { MatSliderModule } from '@angular/material/slider';
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
-    MatSliderModule
+    MatSliderModule,
+    RouterModule.forRoot(paths)
   ],
   providers: [],
   bootstrap: [AppComponent]

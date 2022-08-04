@@ -7,3 +7,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .example-spacer {
     flex: 1 1 auto;
 }
+
+body{
+    background-color: rgb(77, 78, 78);
+}
