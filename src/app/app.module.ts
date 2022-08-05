@@ -1,3 +1,4 @@
+import { AuthGuardService } from './auth-guard.service';
 import { environment } from './../environments/environment';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -21,6 +22,11 @@ import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { AuthService } from './auth.service';
+import { UserService } from './user.service';
+import { OrdersAdminComponent } from './orders-admin/orders-admin.component';
+import { ProductsAdminComponent } from './products-admin/products-admin.component';
+
 
 const paths = [
   {
@@ -35,17 +41,19 @@ const paths = [
     path: 'cart',
     component: ShoppingCartComponent
   },
+   {
+    path: 'login',
+    component: LoginComponent
+  },
   {
     path: 'checkout',
-    component: CheckOutComponent
+    component: CheckOutComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'orders',
-    component: OrdersComponent
-  },
-  {
-    path: 'login',
-    component: LoginComponent
+    component: OrdersComponent,
+    canActivate: [AuthGuardService]
   }
 ]
 
@@ -58,7 +66,9 @@ const paths = [
     LoginComponent,
     ShoppingCartComponent,
     OrdersComponent,
-    CheckOutComponent
+    CheckOutComponent,
+    OrdersAdminComponent,
+    ProductsAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +85,10 @@ const paths = [
     AngularFireStorageModule,
     AngularFirestoreModule
   ],
-  providers: [],
+  providers: [ 
+    AuthService,
+    AuthGuardService,
+    UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
