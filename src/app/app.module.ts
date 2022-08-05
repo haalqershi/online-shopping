@@ -1,3 +1,4 @@
+import { AdminAuthGuardService } from './admin-auth-guard.service';
 import { AuthGuardService } from './auth-guard.service';
 import { environment } from './../environments/environment';
 import { NgModule } from '@angular/core';
@@ -16,7 +17,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { MatSliderModule } from '@angular/material/slider';
-import { RouterModule } from '@angular/router';
+import { RouterModule, CanActivate } from '@angular/router';
 import { AngularFireModule } from "@angular/fire/compat";
 import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
@@ -54,6 +55,11 @@ const paths = [
     path: 'orders',
     component: OrdersComponent,
     canActivate: [AuthGuardService]
+  },
+  {
+    path: 'admin/products',
+    component: ProductsAdminComponent,
+    canActivate: [AuthGuardService, AdminAuthGuardService]
   }
 ]
 
@@ -88,7 +94,9 @@ const paths = [
   providers: [ 
     AuthService,
     AuthGuardService,
-    UserService],
+    UserService,
+    AdminAuthGuardService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
