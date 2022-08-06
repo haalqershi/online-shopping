@@ -10,13 +10,14 @@ import { map } from 'rxjs/operators';
 })
 export class NavbarComponent implements OnInit {
 
-  appUser: AppUser | undefined;
+  // appUser: AppUser | undefined;
+  appUser: any;
 
   constructor(private authService: AuthService) {
     this.authService.appUser$.subscribe(user =>{
-        if(user){
+        // if(user){
           this.appUser = user;
-        }
+        // }
     });
    }
 
