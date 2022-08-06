@@ -1,3 +1,4 @@
+import { CategoryService } from './category.service';
 import { AdminAuthGuardService } from './admin-auth-guard.service';
 import { AuthGuardService } from './auth-guard.service';
 import { environment } from './../environments/environment';
@@ -108,7 +109,8 @@ const paths = [
     AuthService,
     AuthGuardService,
     UserService,
-    AdminAuthGuardService
+    AdminAuthGuardService,
+    CategoryService
   ],
   bootstrap: [AppComponent]
 })
