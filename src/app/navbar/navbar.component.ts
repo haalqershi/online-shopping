@@ -1,5 +1,7 @@
+import { AppUser } from './../models/app-user';
 import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-navbar',
@@ -8,7 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(public authService: AuthService) { }
+  appUser: AppUser | undefined;
+
+  constructor(private authService: AuthService) {
+    this.authService.appUser$.subscribe(user =>{
+        if(user){
+          this.appUser = user;
+        }
+    });
+   }
 
   ngOnInit(): void {
   }

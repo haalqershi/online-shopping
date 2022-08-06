@@ -60,6 +60,11 @@ const paths = [
     path: 'admin/products',
     component: ProductsAdminComponent,
     canActivate: [AuthGuardService, AdminAuthGuardService]
+  },
+  {
+    path: 'admin/orders',
+    component: OrdersAdminComponent,
+    canActivate: [AuthGuardService, AdminAuthGuardService]
   }
 ]
 

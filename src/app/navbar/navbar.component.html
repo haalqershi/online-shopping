@@ -5,17 +5,22 @@
     <span><a routerLink="/orders">Orders</a></span>
     <span><a routerLink="/cart">Shopping Cart</a></span>
     <ng-template #anonymousUser>
-      <span *ngIf="!(authService.user$ | async)">
+      <span>
         <a routerLink="/login">Login</a>
       </span>
     </ng-template>
   
-    <span  *ngIf="authService.user$ | async as user; else anonymousUser" ngbDropdown class="nav-item dropdown">
+    <span  *ngIf="appUser; else anonymousUser" ngbDropdown class="nav-item dropdown">
       <a ngbDropdownToggle class="nav-link dropdown-toggle"  id="dropdown01" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false">{{ user.displayName}}</a>
+        aria-haspopup="true" aria-expanded="false">{{ appUser.name}}</a>
       <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown01">
-        <a class="dropdown-item" routerLink="/orders">My Orders</a>
-        <a class="dropdown-item" routerLink="/admin/products">Manage Products</a>
+        <a class="dropdown-item" routerLink="/orders">Orders</a>
+        
+        <ng-container *ngIf="appUser.isAdmin">
+          <a class="dropdown-item" routerLink="/admin/orders">Manage Orders</a>
+          <a class="dropdown-item" routerLink="/admin/products">Manage Products</a>
+        </ng-container>
+
         <a class="dropdown-item" (click)="logout()">Log Out</a>
       </div>
     </span>
@@ -27,12 +32,12 @@
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
       <mat-icon>share</mat-icon>
     </button>
-    <span  *ngIf="authService.user$ | async as user; else anonymousUser" ngbDropdown class="nav-item dropdown">
+    <!-- <span  *ngIf="authService.user$ | async as user; else anonymousUser" ngbDropdown class="nav-item dropdown">
       <a ngbDropdownToggle class="nav-link dropdown-toggle"  id="dropdown01" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">{{ user.displayName}}</a>
       <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown01">
         <a class="dropdown-item" routerLink="/orders">My Orders</a>
         <a class="dropdown-item" (click)="logout()">Log Out</a>
       </div>
-    </span>
+    </span> -->
   </mat-toolbar>
