@@ -60,6 +60,16 @@ const paths = [
     canActivate: [AuthGuardService]
   },
   {
+    path: 'admin/products/add',
+    component: ProductFormComponent,
+    canActivate: [AuthGuardService, AdminAuthGuardService]
+  },
+  {
+    path: 'admin/products/:productId',
+    component: ProductFormComponent,
+    canActivate: [AuthGuardService, AdminAuthGuardService]
+  },
+  {
     path: 'admin/products',
     component: ProductsAdminComponent,
     canActivate: [AuthGuardService, AdminAuthGuardService]
@@ -68,13 +78,7 @@ const paths = [
     path: 'admin/orders',
     component: OrdersAdminComponent,
     canActivate: [AuthGuardService, AdminAuthGuardService]
-  },
-  {
-    path: 'admin/products/add',
-    component: ProductFormComponent,
-    canActivate: [AuthGuardService, AdminAuthGuardService]
   }
-  
 ]
 
 @NgModule({

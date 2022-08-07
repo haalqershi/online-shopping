@@ -1,1 +1,25 @@
+
+<p> 
 <button routerLink="/admin/products/add" mat-raised-button color="primary">New Product</button>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of products$ | async">
+            <td>{{product.val.name}}</td>
+            <td>{{product.val.category}}</td>
+            <td>{{product.val.price}}</td>
+            <td>
+                <a [routerLink]="['/admin/products/', product.key]">Edit</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
