@@ -1,4 +1,4 @@
-import { CategoryService } from './category.service';
+import { ProductService } from './product.service';
 import { AdminAuthGuardService } from './admin-auth-guard.service';
 import { AuthGuardService } from './auth-guard.service';
 import { environment } from './../environments/environment';
@@ -29,7 +29,8 @@ import { UserService } from './user.service';
 import { OrdersAdminComponent } from './orders-admin/orders-admin.component';
 import { ProductsAdminComponent } from './products-admin/products-admin.component';
 import { ProductFormComponent } from './product-form/product-form.component';
-
+import { FormsModule } from '@angular/forms';
+import { CategoryService } from './category.service';
 
 const paths = [
   {
@@ -103,14 +104,16 @@ const paths = [
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    FormsModule
   ],
   providers: [ 
     AuthService,
     AuthGuardService,
     UserService,
     AdminAuthGuardService,
-    CategoryService
+    CategoryService,
+    ProductService
   ],
   bootstrap: [AppComponent]
 })
