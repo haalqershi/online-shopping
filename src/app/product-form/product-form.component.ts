@@ -20,7 +20,7 @@ export class ProductFormComponent implements OnInit {
               private router: Router,
               private route : ActivatedRoute
     ) { 
-    this.categories$ = categoryService.getCategories();
+    this.categories$ = categoryService.getAll();
     this.productId = this.route.snapshot.paramMap.get('productId');
     if(this.productId){
       console.log("valid productId: " + this.productId);

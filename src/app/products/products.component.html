@@ -1,0 +1,32 @@
+<div class="row">
+    <div class="col-3">
+        <div class="list-group">
+            <a *ngFor="let category of categories$ | async"
+             class="list-group-item list-group-item-action"
+             routerLink="/"
+             [queryParams]="{category: category.key}"
+             >
+                {{category.key}}
+            </a>
+        </div>
+    </div>
+    <div class="col-9">
+        <div class="row">
+            <ng-container *ngFor="let product of products$ | async; let i = index">
+              <div class="col">
+                <div class="card" style="width: 18rem;">
+                  <img src="{{product.val.imgUrl}}" class="card-img-top">
+                  <div class="card-body">
+                    <h5 class="card-title">{{product.val.name}}</h5>
+                    <p class="card-text">{{product.val.price | currency:'USD':true}}</p>
+                    <a href="#" class="btn btn-primary">Add to Cart</a>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="(i+1)%3 === 0" class="w-100"></div>
+            </ng-container>
+          
+          </div>          
+    </div>
+</div>
+

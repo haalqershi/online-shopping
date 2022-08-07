@@ -35,7 +35,7 @@ import { CategoryService } from './category.service';
 const paths = [
   {
     path: '',
-    component: HomeComponent
+    component: ProductsComponent
   },
   {
     path: 'products',
