@@ -1,10 +1,8 @@
-import { CategoryService } from './../category.service';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { SnapshotAction } from '@angular/fire/compat/database';
 import { ProductService } from '../product.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import {take} from 'rxjs/operators';
+import { CategoryService } from '../category.service';
 
 @Component({
   selector: 'app-product-form',
