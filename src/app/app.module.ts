@@ -31,6 +31,7 @@ import { ProductsAdminComponent } from './products-admin/products-admin.componen
 import { ProductFormComponent } from './product-form/product-form.component';
 import { FormsModule } from '@angular/forms';
 import { CategoryService } from './category.service';
+import { ProductFilterComponent } from './products/product-filter/product-filter.component';
 
 const paths = [
   {
@@ -93,7 +94,8 @@ const paths = [
     CheckOutComponent,
     OrdersAdminComponent,
     ProductsAdminComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    ProductFilterComponent
   ],
   imports: [
     BrowserModule,
