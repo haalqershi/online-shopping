@@ -1,3 +1,4 @@
+import { map } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from './../product.service';
 import { Component, OnInit } from '@angular/core';
@@ -18,13 +19,15 @@ export class ProductsComponent implements OnInit {
     private productService: ProductService,
     private route: ActivatedRoute) { // todo: decouple the nested subscribtion 
     this.productService.getAll().subscribe( products =>{
-      this.products = products;
-      
+
+      this.products = products.map((product:any) => {
+        return product.val;
+      })
       this.route.queryParamMap.subscribe(params =>{
         this.category = params.get('category');
   
         this.filteredProducts = (this.category) ? 
-          this.products?.filter((p: any) => p.val.category === this.category) : this.products;
+          this.products?.filter((p: any) => p.category == this.category) : this.products;
       });
     });
   }

@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ProductTemplateComponent implements OnInit {
 
   @Input('product') product: any;
+  @Input('show-actions') showActions = true;
 
   constructor() { }
 
