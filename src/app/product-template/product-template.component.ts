@@ -15,9 +15,12 @@ export class ProductTemplateComponent implements OnInit {
 
   constructor(private shoppingCartService: ShoppingCartService) { }
 
-  addToShoppingCart(product: Product){
-    console.log(product);
-    this.shoppingCartService.addToShoppingCart(product);
+  addToShoppingCart(){
+    this.shoppingCartService.addToShoppingCart(this.product);
+  }
+
+  removeFromShoppingCart(){
+    this.shoppingCartService.removeFromShoppingCart(this.product);
   }
 
   ngOnInit(): void {

@@ -8,6 +8,7 @@ import { Injectable } from '@angular/core';
 })
 export class ShoppingCartService {
   
+  
   constructor(private db: AngularFireDatabase) { }
 
   private async getOrAddCartId() : Promise<string> {
@@ -35,13 +36,21 @@ export class ShoppingCartService {
     return this.db.object('/shopping-carts/' + shoppingCartId + '/items/' + productId);
   }
 
-  async addToShoppingCart(product: Product){
+  addToShoppingCart(product: Product){
+    this.updateQuantity(product, 1);
+  }
+
+  removeFromShoppingCart(product: Product) {
+    this.updateQuantity(product, -1);
+  }
+  
+  private async updateQuantity(product: Product, incrementOrDecrement: number){
     let shoppingCartId = await this.getOrAddCartId();
     
     let item$ = this.getItem(shoppingCartId, product.key);
     item$.valueChanges().pipe(take(1)).subscribe((item:any) =>{
       if(item){
-        item$.update({quantity: item.quantity+1});
+        item$.update({quantity: item.quantity + incrementOrDecrement});
       }else{
         item$.set({product: product, quantity: 1});
       }
