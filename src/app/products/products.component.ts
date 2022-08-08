@@ -2,6 +2,7 @@ import { map } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from './../product.service';
 import { Component, OnInit } from '@angular/core';
+import { Product } from '../Product';
 
 
 @Component({
@@ -20,8 +21,10 @@ export class ProductsComponent implements OnInit {
     private route: ActivatedRoute) { // todo: decouple the nested subscribtion 
     this.productService.getAll().subscribe( products =>{
 
-      this.products = products.map((product:any) => {
-        return product.val;
+      this.products = products.map((pro:any) => {
+        let product: Product = pro.val;
+        product.key = pro.key;
+        return product;
       })
       this.route.queryParamMap.subscribe(params =>{
         this.category = params.get('category');

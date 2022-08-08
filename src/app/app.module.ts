@@ -121,7 +121,8 @@ const paths = [
     UserService,
     AdminAuthGuardService,
     CategoryService,
-    ProductService
+    ProductService,
+    ShoppingCartComponent
   ],
   bootstrap: [AppComponent]
 })
