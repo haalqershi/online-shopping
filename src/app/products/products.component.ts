@@ -1,3 +1,4 @@
+import { ShoppingCart } from './../models/shopping-cart';
 import { ShoppingCartService } from './../shopping-cart.service';
 import { map } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
@@ -44,7 +45,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
 
   async ngOnInit() {
-    this.subscription =  (await this.shoppingCartService.getShoppingCart()).subscribe(cart =>{
+    this.subscription =  (await this.shoppingCartService.getShoppingCart()).subscribe((cart: ShoppingCart) =>{
       this.shoppingCart = cart;
     });
   }

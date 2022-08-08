@@ -1,37 +1,46 @@
 <mat-toolbar>
-    <button routerLink="/" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-      <mat-icon>supervised_user_circle</mat-icon>
-    </button>
-    <span><a routerLink="/cart">Shopping Cart</a></span>
-    <ng-template #anonymousUser>
-      <span>
-        <a routerLink="/login">Login</a>
-      </span>
-    </ng-template>
-  
-    <span  *ngIf="appUser; else anonymousUser" ngbDropdown class="nav-item dropdown">
-      <a ngbDropdownToggle class="nav-link dropdown-toggle"  id="dropdown01" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false">{{ appUser.name}}</a>
-      <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown01">
-        <a class="dropdown-item" routerLink="/orders">Orders</a>
-        
-        <ng-container *ngIf="appUser.isAdmin">
-          <a class="dropdown-item" routerLink="/admin/orders">Manage Orders</a>
-          <a class="dropdown-item" routerLink="/admin/products">Manage Products</a>
-        </ng-container>
-
-        <a class="dropdown-item" (click)="logout()">Log Out</a>
-      </div>
+  <button routerLink="/" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>supervised_user_circle</mat-icon>
+  </button>
+  <span *ngIf="cartItemCount > 0" matBadge="{{ cartItemCount }}" matBadgeOverlap="false">
+    <a routerLink="/cart">
+      Shopping cart
+    </a>
+  </span>
+  <span *ngIf="cartItemCount === 0">
+    <a routerLink="/cart">
+      Shopping cart
+    </a>
+  </span>
+  <ng-template #anonymousUser>
+    <span>
+      <a routerLink="/login">Login</a>
     </span>
-  
-    <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-      <mat-icon>favorite</mat-icon>
-    </button>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-      <mat-icon>share</mat-icon>
-    </button>
-    <!-- <span  *ngIf="authService.user$ | async as user; else anonymousUser" ngbDropdown class="nav-item dropdown">
+  </ng-template>
+
+  <span *ngIf="appUser; else anonymousUser" ngbDropdown class="nav-item dropdown">
+    <a ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
+      aria-expanded="false">{{ appUser.name}}</a>
+    <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown01">
+      <a class="dropdown-item" routerLink="/orders">Orders</a>
+
+      <ng-container *ngIf="appUser.isAdmin">
+        <a class="dropdown-item" routerLink="/admin/orders">Manage Orders</a>
+        <a class="dropdown-item" routerLink="/admin/products">Manage Products</a>
+      </ng-container>
+
+      <a class="dropdown-item" (click)="logout()">Log Out</a>
+    </div>
+  </span>
+
+  <span class="example-spacer"></span>
+  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <mat-icon>favorite</mat-icon>
+  </button>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <mat-icon>share</mat-icon>
+  </button>
+  <!-- <span  *ngIf="authService.user$ | async as user; else anonymousUser" ngbDropdown class="nav-item dropdown">
       <a ngbDropdownToggle class="nav-link dropdown-toggle"  id="dropdown01" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">{{ user.displayName}}</a>
       <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown01">
@@ -39,4 +48,4 @@
         <a class="dropdown-item" (click)="logout()">Log Out</a>
       </div>
     </span> -->
-  </mat-toolbar>
+</mat-toolbar>

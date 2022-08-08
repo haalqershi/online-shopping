@@ -33,6 +33,8 @@ import { FormsModule } from '@angular/forms';
 import { CategoryService } from './category.service';
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
 import { ProductTemplateComponent } from './product-template/product-template.component';
+import {MatBadgeModule} from '@angular/material/badge';
+
 
 const paths = [
   {
@@ -113,7 +115,8 @@ const paths = [
     AngularFireAuthModule,
     AngularFireStorageModule,
     AngularFirestoreModule,
-    FormsModule
+    FormsModule,
+    MatBadgeModule
   ],
   providers: [ 
     AuthService,
