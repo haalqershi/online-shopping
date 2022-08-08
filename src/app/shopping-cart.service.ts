@@ -1,3 +1,4 @@
+import { Product } from './Product';
 import { take } from 'rxjs';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { Injectable } from '@angular/core';
@@ -29,15 +30,20 @@ export class ShoppingCartService {
     });
   }
 
-  async addToShoppingCart(product: any){
-    let shoppingCartId = await this.getOrAddCartId();
-    let item$ = this.db.object('/shopping-carts/' + shoppingCartId + '/items/' + product.key);
+  private getItem(shoppingCartId: string, productId: string){
+    return this.db.object('/shopping-carts/' + shoppingCartId + '/items/' + productId);
+  }
 
+  async addToShoppingCart(product: Product){
+    let shoppingCartId = await this.getOrAddCartId();
+    
+    let item$ = this.getItem(shoppingCartId, product.key);
     item$.valueChanges().pipe(take(1)).subscribe((item:any) =>{
-      console.log("AddToShoppingCart() is firing");
-      console.log("Current Product: " + product.key);
-      if(item) item$.update({quantity: item.quantity+1});
-      else item$.set({product: product, quantity: 1});
-    })
+      if(item){
+        item$.update({quantity: item.quantity+1});
+      }else{
+        item$.set({product: product, quantity: 1});
+      }
+    });
   }
 }
