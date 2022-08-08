@@ -1,8 +1,10 @@
+import { ShoppingCartService } from './../shopping-cart.service';
 import { map } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from './../product.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Product } from '../Product';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -10,15 +12,19 @@ import { Product } from '../Product';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, OnDestroy {
 
   products:  any[] = [];
   category: any;
   filteredProducts: any[] = [];
+  shoppingCart: any;
+  subscription!: Subscription;
 
   constructor(
     private productService: ProductService,
-    private route: ActivatedRoute) { // todo: decouple the nested subscribtion 
+    private route: ActivatedRoute,
+    private shoppingCartService: ShoppingCartService) { // todo: decouple the nested subscribtion 
+    
     this.productService.getAll().subscribe( products =>{
 
       this.products = products.map((pro:any) => {
@@ -35,7 +41,16 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
+
+
+  async ngOnInit() {
+    this.subscription =  (await this.shoppingCartService.getShoppingCart()).subscribe(cart =>{
+      this.shoppingCart = cart;
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
 }

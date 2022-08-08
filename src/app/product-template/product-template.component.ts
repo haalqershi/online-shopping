@@ -9,14 +9,9 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ProductTemplateComponent implements OnInit {
 
-  @Input('product') product: Product= {
-    key: '',
-    category: '',
-    name: '',
-    price: 0,
-    imgUrl: ''
-  };
+  @Input('product') product!: Product;
   @Input('show-actions') showActions = true;
+  @Input('shopping-cart') shoppingCart : any = {};
 
   constructor(private shoppingCartService: ShoppingCartService) { }
 
@@ -26,6 +21,12 @@ export class ProductTemplateComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  getQuantity(){
+    if(!this.shoppingCart) return 0;
+    let item = this.shoppingCart.items[this.product.key];
+    return item ? item.quantity : 0;
   }
 
 }

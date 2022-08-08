@@ -10,7 +10,7 @@ export class ShoppingCartService {
   
   constructor(private db: AngularFireDatabase) { }
 
-  private async getOrAddCartId() {
+  private async getOrAddCartId() : Promise<string> {
     let cartId= localStorage.getItem('cartId');
     if(cartId){
       return cartId;
@@ -20,7 +20,8 @@ export class ShoppingCartService {
     return result.key;
   }
 
-  private getShoppingCart(cartId: string){
+  async getShoppingCart(){
+    let cartId = await this.getOrAddCartId()
     return this.db.object('/shopping-carts/'+cartId).valueChanges();
   }
  
