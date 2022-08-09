@@ -2,16 +2,16 @@
   <button routerLink="/" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
     <mat-icon>supervised_user_circle</mat-icon>
   </button>
-  <span *ngIf="cartItemCount > 0" matBadge="{{ cartItemCount }}" matBadgeOverlap="false">
+  <span *ngIf="shoppingCart$ | async as cart" matBadge="{{ cart.totalItemsCount }}" matBadgeOverlap="false">
     <a routerLink="/cart">
       Shopping cart
     </a>
   </span>
-  <span *ngIf="cartItemCount === 0">
+  <!-- <span *ngIf="cartItemCount === 0">
     <a routerLink="/cart">
       Shopping cart
     </a>
-  </span>
+  </span> -->
   <ng-template #anonymousUser>
     <span>
       <a routerLink="/login">Login</a>
