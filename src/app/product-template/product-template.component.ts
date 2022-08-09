@@ -21,17 +21,8 @@ export class ProductTemplateComponent implements OnInit {
     this.shoppingCartService.addToShoppingCart(this.product);
   }
 
-  removeFromShoppingCart(){
-    this.shoppingCartService.removeFromShoppingCart(this.product);
-  }
 
   ngOnInit(): void {
-  }
-
-  getQuantity(){
-    if(!this.shoppingCart) return 0;
-    let item = this.shoppingCart.itemsObj[this.product.key];
-    return item ? item.quantity : 0;
   }
 
 }

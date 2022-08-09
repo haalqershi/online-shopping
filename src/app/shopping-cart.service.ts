@@ -9,7 +9,6 @@ import { Injectable } from '@angular/core';
 })
 export class ShoppingCartService {
   
-  
   constructor(private db: AngularFireDatabase) { }
 
   private async getOrAddCartId() : Promise<string> {
@@ -59,5 +58,10 @@ export class ShoppingCartService {
         item$.set({product: product, quantity: 1});
       }
     });
+  }
+
+  async clearShoppingCart() {
+    let shoppingCartId = await this.getOrAddCartId();
+    this.db.object('/shopping-carts/' + shoppingCartId + '/items').remove();
   }
 }

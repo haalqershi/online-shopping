@@ -34,6 +34,7 @@ import { CategoryService } from './category.service';
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
 import { ProductTemplateComponent } from './product-template/product-template.component';
 import {MatBadgeModule} from '@angular/material/badge';
+import { ItemQuantityComponent } from './item-quantity/item-quantity.component';
 
 
 const paths = [
@@ -99,7 +100,8 @@ const paths = [
     ProductsAdminComponent,
     ProductFormComponent,
     ProductFilterComponent,
-    ProductTemplateComponent
+    ProductTemplateComponent,
+    ItemQuantityComponent
   ],
   imports: [
     BrowserModule,
