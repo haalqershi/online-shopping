@@ -52,10 +52,11 @@ export class ShoppingCartService {
     
     let item$ = this.getItem(shoppingCartId, product.key);
     item$.valueChanges().pipe(take(1)).subscribe((item:any) =>{
-      if(item){
-        item$.update({quantity: item.quantity + incrementOrDecrement});
-      }else{
-        item$.set({product: product, quantity: 1});
+      let currentQuantity = (item ? item.quantity : 0)  + incrementOrDecrement;
+      
+      if(currentQuantity === 0) item$.remove();
+      else{
+       item ? item$.update({quantity: item.quantity + incrementOrDecrement}):  item$.set({product: product, quantity: 1});
       }
     });
   }
