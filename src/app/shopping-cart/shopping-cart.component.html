@@ -11,15 +11,16 @@
                 <th>Product</th>
                 <th>Quantity</th>
                 <th>Price</th>
+                <th>Price</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let productId of shoppingCart
-        
-        .allProductIds">
-                <td>{{ shoppingCart.items[productId].product.name }}</td>
-                <td>{{ shoppingCart.items[productId].quantity }}</td>
-                <td></td>
+            <tr *ngFor="let item of shoppingCart.items">
+                <td>{{ item.product.name }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.totalPrice}} </td>
+                <td>
+                </td>
             </tr>
         </tbody>
     </table>

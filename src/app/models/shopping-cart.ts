@@ -2,19 +2,19 @@ import { ShoppingCartItem } from './shopping-cart-item';
 
 export class ShoppingCart{
 
-    constructor(public items: any[]){}
+    items: ShoppingCartItem[]= [];
 
-    get totalItemsCount(){
-        let cartItemCount = 0;
-        for(let productId in this.items){
-          cartItemCount += this.items[productId].quantity;
+    constructor(public itemsObj: {[key: string]: ShoppingCartItem}){
+        for(let id in itemsObj){
+            this.items.push(itemsObj[id]);
         }
-        return cartItemCount;
     }
 
-    get allProductIds(){
-
-        console.log( Object.keys(this.items));
-        return Object.keys(this.items);
+    get totalItemsCount(){
+       let totalItems = 0;
+       for(let id in this.itemsObj){
+        totalItems += this.itemsObj[id].quantity;
+       }
+        return totalItems;
     }
 }
