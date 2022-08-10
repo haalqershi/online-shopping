@@ -8,8 +8,14 @@
     text-align: right;
 }
 
-.btn{
+.clearBtn{
     width: 80px;
+    margin-left: 10px;
+
+}
+
+.checkoutBtn{
+    width: 150px;
 }
 
 .img-thumbnail{
@@ -17,4 +23,8 @@
     height: 70px;
     background-size: cover;
     border-radius: 100%;
+}
+
+.checkout{
+    margin-bottom: 50px;
 }
