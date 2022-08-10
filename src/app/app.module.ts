@@ -1,3 +1,4 @@
+import { OrderService } from './order.service';
 import { ProductService } from './product.service';
 import { AdminAuthGuardService } from './admin-auth-guard.service';
 import { AuthGuardService } from './auth-guard.service';
@@ -35,6 +36,7 @@ import { ProductFilterComponent } from './products/product-filter/product-filter
 import { ProductTemplateComponent } from './product-template/product-template.component';
 import {MatBadgeModule} from '@angular/material/badge';
 import { ItemQuantityComponent } from './item-quantity/item-quantity.component';
+import { OrderConfirmationComponent } from './order-confirmation/order-confirmation.component';
 
 
 const paths = [
@@ -64,6 +66,11 @@ const paths = [
     component: OrdersComponent,
     canActivate: [AuthGuardService]
   },
+   {
+    path: 'order/confirmation/:id',
+    component: OrderConfirmationComponent,
+    canActivate: [AuthGuardService]
+  },
   {
     path: 'admin/products/add',
     component: ProductFormComponent,
@@ -79,11 +86,8 @@ const paths = [
     component: ProductsAdminComponent,
     canActivate: [AuthGuardService, AdminAuthGuardService]
   },
-  {
-    path: 'admin/orders',
-    component: OrdersAdminComponent,
-    canActivate: [AuthGuardService, AdminAuthGuardService]
-  }
+
+
 ]
 
 @NgModule({
@@ -101,7 +105,8 @@ const paths = [
     ProductFormComponent,
     ProductFilterComponent,
     ProductTemplateComponent,
-    ItemQuantityComponent
+    ItemQuantityComponent,
+    OrderConfirmationComponent
   ],
   imports: [
     BrowserModule,
@@ -127,7 +132,8 @@ const paths = [
     AdminAuthGuardService,
     CategoryService,
     ProductService,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    OrderService
   ],
   bootstrap: [AppComponent]
 })
