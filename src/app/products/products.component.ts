@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductService } from './../product.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Product } from '../Product';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 
 @Component({
@@ -13,19 +13,31 @@ import { Subscription } from 'rxjs';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
-export class ProductsComponent implements OnInit, OnDestroy {
+export class ProductsComponent implements OnInit {
 
   products:  any[] = [];
   category: any;
   filteredProducts: any[] = [];
-  shoppingCart: any;
-  subscription!: Subscription;
+  shoppingCart$!: Observable<ShoppingCart>;
 
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute,
-    private shoppingCartService: ShoppingCartService) { // todo: decouple the nested subscribtion 
-    
+    private shoppingCartService: ShoppingCartService) { // todo: decouple the nested 
+
+  }
+
+  async ngOnInit() {
+    this.shoppingCart$ =  await this.shoppingCartService.getShoppingCart();
+    this.getProducts();
+  }
+
+  private filtering(){
+    this.filteredProducts = (this.category) ? 
+    this.products?.filter((p: any) => p.category == this.category) : this.products;
+  }
+
+  private getProducts(){
     this.productService.getAll().subscribe( products =>{
 
       this.products = products.map((pro:any) => {
@@ -35,23 +47,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
       })
       this.route.queryParamMap.subscribe(params =>{
         this.category = params.get('category');
-  
-        this.filteredProducts = (this.category) ? 
-          this.products?.filter((p: any) => p.category == this.category) : this.products;
+        this.filtering()
       });
     });
   }
-
-
-
-  async ngOnInit() {
-    this.subscription =  (await this.shoppingCartService.getShoppingCart()).subscribe((cart: ShoppingCart) =>{
-      this.shoppingCart = cart;
-    });
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
-
 }
