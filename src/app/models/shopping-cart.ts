@@ -14,8 +14,8 @@ export class ShoppingCart{
 
     get totalItemsCount(){
        let totalItems = 0;
-       for(let id in this.itemsObj){
-        totalItems += this.itemsObj[id].quantity;
+       for(let id in this.items){
+        totalItems += this.items[id].quantity;
        }
         return totalItems;
     }
