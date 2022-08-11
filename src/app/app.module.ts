@@ -76,6 +76,11 @@ const paths = [
     canActivate: [AuthGuardService]
   },
   {
+    path: 'admin/orders',
+    component: OrdersAdminComponent,
+    canActivate: [AuthGuardService, AdminAuthGuardService]
+  },
+  {
     path: 'admin/products/add',
     component: ProductFormComponent,
     canActivate: [AuthGuardService, AdminAuthGuardService]
