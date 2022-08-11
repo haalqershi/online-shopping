@@ -37,6 +37,7 @@ import { ProductTemplateComponent } from './product-template/product-template.co
 import {MatBadgeModule} from '@angular/material/badge';
 import { ItemQuantityComponent } from './item-quantity/item-quantity.component';
 import { OrderConfirmationComponent } from './order-confirmation/order-confirmation.component';
+import { ShoppingCartItemsSummaryComponent } from './shopping-cart-items-summary/shopping-cart-items-summary.component';
 
 
 const paths = [
@@ -106,7 +107,8 @@ const paths = [
     ProductFilterComponent,
     ProductTemplateComponent,
     ItemQuantityComponent,
-    OrderConfirmationComponent
+    OrderConfirmationComponent,
+    ShoppingCartItemsSummaryComponent
   ],
   imports: [
     BrowserModule,

@@ -13,3 +13,8 @@ a{
 .dropdown-toggle{
     cursor: pointer;
 }
+
+.dropdown{
+    position: absolute;
+    right: 50px;
+}
