@@ -1,7 +1,8 @@
 
-<h2>Shipping</h2>
+
 <div class="row">
-  <div class="col-6">
+  <div class="col-6" style="background: rgb(190, 190, 190);">
+    <h2>Shipping Address</h2>
     <form #f="ngForm">
       <div class="form-group">
         <label for="">Name</label>
@@ -31,10 +32,18 @@
           <div>City is required.</div>
         </div>
       </div>
-      <button 
-        (click)="placeOrder()"
-        class="btn btn-primary">Place Order</button>
+      <div class="form-group">
+        <label for="">Zip Code</label>
+        <input #zipCode="ngModel" name="zipCode" [(ngModel)]="shipping.zipCode" type="text" class="form-control" required>
+        <div class="alert alert-danger" *ngIf="zipCode.touched && city.invalid">
+          <div>Zip Code is required.</div>
+        </div>
+      </div>
     </form>
+     <app-payment></app-payment>
+     <button 
+     (click)="placeOrder()"
+     class="btn btn-primary">Place Order</button>
   </div>
   <div class="col-6">
     <app-shopping-cart-items-summary [cart]="cart"></app-shopping-cart-items-summary>

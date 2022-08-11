@@ -1,0 +1,21 @@
+.card-details {
+    background: rgb(190, 190, 190);
+    color: rgb(0, 0, 0);
+    margin: 10px 0px;
+  }
+  
+  .card-details p {
+    font-size: 15px;
+  }
+  
+  .card-details label {
+    font-size: 15px;
+  
+    line-height: 35px;
+  }
+
+  .icon-container {
+    margin-bottom: 20px;
+    padding: 7px 0;
+    font-size: 24px;
+  }

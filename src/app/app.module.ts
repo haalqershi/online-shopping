@@ -1,3 +1,4 @@
+import { PaymentService } from './payment.service';
 import { OrderService } from './order.service';
 import { ProductService } from './product.service';
 import { AdminAuthGuardService } from './admin-auth-guard.service';
@@ -38,6 +39,7 @@ import {MatBadgeModule} from '@angular/material/badge';
 import { ItemQuantityComponent } from './item-quantity/item-quantity.component';
 import { OrderConfirmationComponent } from './order-confirmation/order-confirmation.component';
 import { ShoppingCartItemsSummaryComponent } from './shopping-cart-items-summary/shopping-cart-items-summary.component';
+import { PaymentComponent } from './payment/payment.component';
 
 
 const paths = [
@@ -108,7 +110,8 @@ const paths = [
     ProductTemplateComponent,
     ItemQuantityComponent,
     OrderConfirmationComponent,
-    ShoppingCartItemsSummaryComponent
+    ShoppingCartItemsSummaryComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -135,7 +138,8 @@ const paths = [
     CategoryService,
     ProductService,
     ShoppingCartComponent,
-    OrderService
+    OrderService,
+    PaymentService
   ],
   bootstrap: [AppComponent]
 })

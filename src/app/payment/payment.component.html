@@ -1,0 +1,55 @@
+<div class="card-details">
+  <h2>Payment</h2>
+  <label for="fname">Accepted Cards</label>
+  <div class="icon-container">
+    <i class="fa fa-cc-visa" style="color:navy;"></i>
+    <i class="fa fa-cc-amex" style="color:blue;"></i>
+    <i class="fa fa-cc-mastercard" style="color:red;"></i>
+    <i class="fa fa-cc-discover" style="color:orange;"></i>
+  </div>
+
+  <div>
+    <label for="CardNumber">Card Holder Name</label>
+    <input #nameOnCard="ngModel" pattern="^\d{16}$" name="nameOnCard" [(ngModel)]="payment.nameOnCard" required
+      [class.is-invalid]="nameOnCard.invalid && nameOnCard.touched" class="form-control"
+      placeholder="####-####-####-####" />
+
+    <small class="text-danger" *ngIf="nameOnCard.touched && nameOnCard.invalid">Card name is required</small>
+
+  </div>
+
+  <div>
+    <label for="CardNumber">Card Number</label>
+    <input #cardNumber="ngModel" pattern="^\d{16}$" name="cardNumber" [(ngModel)]="payment.cardNumber" required
+      [class.is-invalid]="cardNumber.invalid && cardNumber.touched" class="form-control"
+      placeholder="####-####-####-####" />
+
+    <small class="text-danger" *ngIf="cardNumber.touched && cardNumber.invalid">Card number is required and it should be
+      of 16 digits</small>
+
+  </div>
+  <div>
+    <label for="ExpiryMonth">Expiry Month</label>
+    <input #expiryMonth="ngModel" pattern="^(?:1[0-2]|[1-9])$" name="expiryMonth" [(ngModel)]="payment.expiryMonth"
+      required [class.is-invalid]="expiryMonth.invalid && expiryMonth.touched" class="form-control" placeholder="MM" />
+    <small class="text-danger" *ngIf="expiryMonth.invalid && expiryMonth.touched">Month is required</small>
+  </div>
+  <div>
+    <label for="ExpiryYear">Expiry Year</label>
+    <input #expiryYear="ngModel" pattern="^\d{4}$" name="expiryYear" [(ngModel)]="payment.expiryYear" required
+      [class.is-invalid]="expiryYear.invalid && expiryYear.touched" class="form-control" placeholder="YYYY" />
+    <small class="text-danger" *ngIf="expiryYear.touched && expiryYear.invalid">Year is required</small>
+  </div>
+  <div>
+    <label for="cvv">CVV</label>
+    <input #cvv="ngModel" pattern="^\d{3}$" name="cvv" [(ngModel)]="payment.cvv" required
+      [class.is-invalid]="cvv.invalid && cvv.touched" type="password" class="form-control" placeholder="###" />
+    <small class="text-danger" *ngIf="cvv.touched && cvv.invalid">Please enter valid data</small>
+  </div>
+  <br>
+
+  <!-- <button (click)="savePaymentInfo()" class="btn btn-success">Submit</button> -->
+  <div *ngIf="submitted">
+    <h4>You submitted successfully!!</h4>
+  </div>
+</div>
