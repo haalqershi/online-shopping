@@ -40,6 +40,7 @@ import { ItemQuantityComponent } from './item-quantity/item-quantity.component';
 import { OrderConfirmationComponent } from './order-confirmation/order-confirmation.component';
 import { ShoppingCartItemsSummaryComponent } from './shopping-cart-items-summary/shopping-cart-items-summary.component';
 import { PaymentComponent } from './payment/payment.component';
+import { ShippingComponent } from './shipping/shipping.component';
 
 
 const paths = [
@@ -111,7 +112,8 @@ const paths = [
     ItemQuantityComponent,
     OrderConfirmationComponent,
     ShoppingCartItemsSummaryComponent,
-    PaymentComponent
+    PaymentComponent,
+    ShippingComponent
   ],
   imports: [
     BrowserModule,

@@ -10,7 +10,6 @@ import { PaymentService } from '../payment.service';
 })
 export class PaymentComponent implements OnInit {
   payment: Payment;
-  //payment:any={};
   submitted = false;
 
   constructor(private paymentService: PaymentService) {
@@ -18,10 +17,6 @@ export class PaymentComponent implements OnInit {
    }
 
   savePaymentInfo(){
-    // console.log(this.payment.cardNumber)
-    // console.log(this.payment.expiryMonth)
-    // console.log(this.payment.expiryYear)
-    // console.log(this.payment.cvv)
     this.paymentService.save(this.payment).then(()=>{
       console.log(this.payment);
       this.submitted = true;
