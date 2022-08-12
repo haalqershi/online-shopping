@@ -6,6 +6,9 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class OrderService {
+  deleteOrder(orderId: string) {
+    this.db.object('/orders/'+ orderId).remove();
+  }
 
   getOrders() { 
     return this.db.list('/orders').valueChanges();
