@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  signUrl: "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=",
   firebaseConfig : {
     apiKey: "AIzaSyCiBz0GEQX5DoteSVZEVtWIqIaMuvF6yQA",
     authDomain: "online-shopping-fe43b.firebaseapp.com",

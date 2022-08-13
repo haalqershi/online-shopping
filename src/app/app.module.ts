@@ -1,3 +1,5 @@
+import { HttpService } from './http.service';
+import { HttpClientModule } from '@angular/common/http';
 import { PaymentService } from './payment.service';
 import { OrderService } from './order.service';
 import { ProductService } from './product.service';
@@ -135,7 +137,8 @@ const paths = [
     AngularFireStorageModule,
     AngularFirestoreModule,
     FormsModule,
-    MatBadgeModule
+    MatBadgeModule,
+    HttpClientModule
   ],
   providers: [ 
     AuthService,
@@ -146,7 +149,8 @@ const paths = [
     ProductService,
     ShoppingCartComponent,
     OrderService,
-    PaymentService
+    PaymentService,
+    HttpService
   ],
   bootstrap: [AppComponent]
 })
