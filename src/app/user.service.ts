@@ -1,3 +1,4 @@
+import { UserModel } from './models/user-model';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireObject } from '@angular/fire/compat/database';
 import * as firebase from '@firebase/auth';
@@ -10,15 +11,15 @@ export class UserService {
 
   constructor(public db: AngularFireDatabase) { }
   
-  save(user: firebase.User){
-    this.db.object('/users/' + user.uid).update({
-      name: user.displayName,
-      email: user.email,
-      isAdmin: true
-    })
+  save(user: any){
+    // this.db.object('/users/' + user.localId).update({
+    //   name: user.displayName,
+    //   email: user.email,
+    //   isAdmin: true
+    // })
   }
 
-  get(userId: string) : AngularFireObject<AppUser>{
+  get(userId: string) : any{
     return this.db.object(`/users/${userId}`);
   }
 }

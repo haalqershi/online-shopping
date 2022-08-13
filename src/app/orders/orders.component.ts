@@ -16,8 +16,8 @@ export class OrdersComponent implements OnInit {
     private authService: AuthService,
     private orderService: OrderService) { 
 
-    this.orders$ = this.authService.user$.pipe(switchMap(u => {
-      return this.orderService.getOrdersByUser(u.uid)
+    this.orders$ = this.authService.user$.pipe(switchMap((u:any) => {
+      return this.orderService.getOrdersByUser(u?.email)
     }));
   }
 

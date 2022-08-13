@@ -15,11 +15,11 @@
 
   <span *ngIf="appUser; else anonymousUser" ngbDropdown class="nav-item dropdown">
     <a ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
-      aria-expanded="false">{{ appUser.name}}</a>
+      aria-expanded="false">{{ appUser.email}}</a>
     <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown01">
       <a class="dropdown-item" routerLink="/orders">Orders</a>
 
-      <ng-container *ngIf="appUser.isAdmin">
+      <ng-container *ngIf="appUser.email">
         <a class="dropdown-item" routerLink="/admin/orders">Manage Orders</a>
         <a class="dropdown-item" routerLink="/admin/products">Manage Products</a>
       </ng-container>

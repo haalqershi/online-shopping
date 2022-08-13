@@ -22,7 +22,7 @@ export class ShippingComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.userSubscription = this.authService.user$.subscribe(user => this.currentUserId = user.uid);
+    this.userSubscription = this.authService.user$.subscribe((user:any) => this.currentUserId = user.uid);
   }
 
   async placeOrder() {

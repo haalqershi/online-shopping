@@ -1,5 +1,4 @@
 import { HttpService } from './http.service';
-import { UserModel } from './models/user-model';
 import { AppUser } from './models/app-user';
 import { UserService } from './user.service';
 import { Injectable } from '@angular/core';
@@ -10,6 +9,7 @@ import { BehaviorSubject, Observable, catchError} from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { AuthResponse } from './models/auth-response';
+import { UserModel } from './models/user-model';
 
 
 
@@ -18,9 +18,37 @@ import { AuthResponse } from './models/auth-response';
 })
 export class AuthService {
 
-  user$: Observable<firebase.User | any>;
+  expiresIn!: any;
+  autoLogin() {
+    let userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
+    if(userInfo && userInfo._token){
+      const userModel: UserModel = new UserModel(userInfo.email, userInfo._token, userInfo._tokenExpirationDate);
+      this.expiresIn = new Date(Date.parse(userInfo._tokenExpirationDate)).getTime() - new Date().getTime();
+      this.autoLogout()
+      this.user$.next(userModel);
 
-  user: BehaviorSubject<UserModel | null>;
+    }
+  }
+
+
+  autoLogout(){
+    const loggingOut = setTimeout(() =>{
+      localStorage.removeItem('userInfo');
+      this.user$.next(null);
+      this.router.navigate(['/'])
+    }, this.expiresIn);
+  }
+
+  logout(){
+    localStorage.removeItem('userInfo');
+    this.user$.next(null);
+    this.router.navigate(['/'])
+  }
+
+
+  // user$: Observable<firebase.User | any>;
+
+  user$: BehaviorSubject<UserModel | null>;
 
   constructor(
     private angularFireAuth: AngularFireAuth,
@@ -29,13 +57,13 @@ export class AuthService {
     private userService: UserService,
     private httpService: HttpService
     ) { 
-      this.user$ = angularFireAuth.authState;
-      this.user = new BehaviorSubject<UserModel | null>(null);
+      // this.user$ = angularFireAuth.authState;
+      this.user$ = new BehaviorSubject<UserModel | null>(null);
     }
 
-  logout() {
-    this.angularFireAuth.signOut();
-  }
+  // logout() {
+  //   this.angularFireAuth.signOut();
+  // }
 
   // login(){
   //   let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
@@ -66,15 +94,15 @@ export class AuthService {
       tokenExpirationDate
     );
 
-    this.user.next(userModel);
+    this.user$.next(userModel);
     console.log(JSON.stringify(userModel));
     localStorage.setItem("userInfo", JSON.stringify(userModel));
   }
 
 
-  get appUser$() : Observable<AppUser | null>{
+  get appUser$() : any{
     return this.user$.pipe(switchMap(user => {
-      return user != null ? this.userService.get(user!.uid).valueChanges() : of(null);
+      return user != null ? this.userService.get(user.email).valueChanges() : of(null);
     }))
   }
 }
