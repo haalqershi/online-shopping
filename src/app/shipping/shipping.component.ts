@@ -31,8 +31,8 @@ export class ShippingComponent implements OnInit, OnDestroy {
       console.log(user);
       this.currentUserId = user.email;
       let order = new Order(user.email, this.shipping, this.cart);
-      let result = this.orderService.placeOrder(order.getOrder());
-      // this.router.navigate(['/order/confirmation', result.key]);
+      let result : any = this.orderService.placeOrder(order.getOrder());
+      this.router.navigate(['/order/confirmation', result.key]);
     });
    
     // this.shoppingCartService.clearShoppingCart();

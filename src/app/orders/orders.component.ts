@@ -10,7 +10,7 @@ import { Observable, switchMap } from 'rxjs';
   styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent implements OnInit {
-  orders$: Observable<any[]>;
+  orders$: any;
   
   constructor(
     private authService: AuthService,

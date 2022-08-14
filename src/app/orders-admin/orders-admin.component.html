@@ -11,16 +11,16 @@
   </thead> 
   <tbody>
     <tr *ngFor="let order of orders$ | async">
-      <td>{{ order.shipping.name }}</td>
-      <td>{{ order.datePlaced | date}}</td>
+      <td>{{ order.val.shipping.name }}</td>
+      <td>{{ order.val.datePlaced | date}}</td>
       <td>
         <button mat-icon-button>
-          <mat-icon>open_in_new</mat-icon>
+          <mat-icon  [routerLink]="['/admin/orders/', order.key]">open_in_new</mat-icon>
         </button>
       </td>
       <td>
         <button style="font-size: 5px;" mat-icon-button color="warn">
-          <mat-icon (click)="deleteOrder(order)">delete</mat-icon>
+          <mat-icon (click)="deleteOrder(order.key)">delete</mat-icon>
         </button>
       </td>
     </tr>

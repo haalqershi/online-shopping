@@ -1,3 +1,4 @@
+import { Product } from './../Product';
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../product.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -23,7 +24,7 @@ export class ProductFormComponent implements OnInit {
     this.categories$ = categoryService.getAll();
     this.productId = this.route.snapshot.paramMap.get('productId');
     if(this.productId){
-      this.productService.get(this.productId).valueChanges().pipe(take(1)).subscribe((p: any) => {
+      this.productService.get(this.productId).pipe(take(1)).subscribe((p: any) => {
         this.product = p;
       });
     }
@@ -32,21 +33,22 @@ export class ProductFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  save(newProduct: any){
+  save(newProduct: Product){
     if(this.productId){
-      this.productService.update(this.productId, newProduct);
+      console.log(newProduct);
+      this.productService.update(this.productId, newProduct).subscribe();
     }else{
-      this.productService.create(newProduct);
+      this.productService.create(newProduct).subscribe();
     }
-    
     this.router.navigate(['/admin/products']);
+   
   }
 
   delete(){
     if(!confirm('Do you want to delete this Product?')){
       return;
     }
-    this.productService.delete(this.productId);
+    this.productService.delete(this.productId).subscribe();
     this.router.navigate(['/admin/products']);
   }
 

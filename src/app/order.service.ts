@@ -1,20 +1,37 @@
+import { OrderHttpService } from './order-http.service';
 import { ShoppingCartService } from './shopping-cart.service';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
+  
+  getOrderById(orderId: any) {
+    return this.orderHttpService.getAllOrderById(orderId);
+  }
   deleteOrder(orderId: string) {
-    this.db.object('/orders/'+ orderId).remove();
+    this.orderHttpService.deleteOrder(orderId).subscribe();
   }
 
   getOrders() { 
-    return this.db.list('/orders').valueChanges();
+    // this.orderHttpService.getAllOrders();
+    // return this.db.list('/orders').valueChanges();
+    return  this.db
+    .list('/orders')
+    .snapshotChanges()
+    .pipe(
+    map((actions) => {
+        return actions.map((action) => ({
+            key: action.key,
+            val: action.payload.val()
+        }));
+    }));
   }
 
-  constructor(private db: AngularFireDatabase, private shoppingCartService: ShoppingCartService) { }
+  constructor(private db: AngularFireDatabase, private shoppingCartService: ShoppingCartService, private orderHttpService: OrderHttpService) { }
 
   async placeOrder(order: any){
     let placedOrder = await this.db.list('/orders').push(order);
@@ -23,12 +40,13 @@ export class OrderService {
   }
   getOrdersByUser(userId: string) {
     return this.db.list('/orders', ref =>
-    ref.orderByChild('userId').equalTo(userId)).valueChanges();
-    // return this.db.list('/orders', {
-    //   query: {
-    //     orderByChild: 'userId',
-    //     equalTo: userId        
-    //   }
-    // });
+    ref.orderByChild('userId').equalTo(userId)).snapshotChanges()
+    .pipe(
+    map((actions) => {
+        return actions.map((action) => ({
+            key: action.key,
+            val: action.payload.val()
+        }));
+    }));
   }
 }

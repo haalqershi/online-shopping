@@ -1,5 +1,7 @@
+import { ProductHttpService } from './product-http.service';
+import { OrderHttpService } from './order-http.service';
 import { HttpService } from './http.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { PaymentService } from './payment.service';
 import { OrderService } from './order.service';
 import { ProductService } from './product.service';
@@ -43,6 +45,8 @@ import { OrderConfirmationComponent } from './order-confirmation/order-confirmat
 import { ShoppingCartItemsSummaryComponent } from './shopping-cart-items-summary/shopping-cart-items-summary.component';
 import { PaymentComponent } from './payment/payment.component';
 import { ShippingComponent } from './shipping/shipping.component';
+import { OrderDetailsComponent } from './order-details/order-details.component';
+import { OnlineShoppingHttpInterceptor } from './online-shopping-http-interceptor';
 
 
 const paths = [
@@ -72,6 +76,11 @@ const paths = [
     component: OrdersComponent,
     canActivate: [AuthGuardService]
   },
+  {
+    path: 'orders/:id',
+    component: OrderDetailsComponent,
+    canActivate: [AuthGuardService]
+  },
    {
     path: 'order/confirmation/:id',
     component: OrderConfirmationComponent,
@@ -80,6 +89,11 @@ const paths = [
   {
     path: 'admin/orders',
     component: OrdersAdminComponent,
+    canActivate: [AuthGuardService, AdminAuthGuardService]
+  },
+  {
+    path: 'admin/orders/:id',
+    component: OrderDetailsComponent,
     canActivate: [AuthGuardService, AdminAuthGuardService]
   },
   {
@@ -120,7 +134,8 @@ const paths = [
     OrderConfirmationComponent,
     ShoppingCartItemsSummaryComponent,
     PaymentComponent,
-    ShippingComponent
+    ShippingComponent,
+    OrderDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -150,7 +165,10 @@ const paths = [
     ShoppingCartComponent,
     OrderService,
     PaymentService,
-    HttpService
+    HttpService,
+    OrderHttpService,
+    ProductHttpService,
+    {provide: HTTP_INTERCEPTORS, useClass : OnlineShoppingHttpInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

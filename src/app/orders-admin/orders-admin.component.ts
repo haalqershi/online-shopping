@@ -17,7 +17,9 @@ export class OrdersAdminComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  deleteOrder(orderId: string){
+  deleteOrder(orderId: any){
+    console.log(orderId);
+    this.orderService.deleteOrder(orderId);
   }
 
 }

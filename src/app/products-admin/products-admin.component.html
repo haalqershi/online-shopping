@@ -10,6 +10,7 @@
             <th>Price</th>
             <th>Category</th>
             <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -19,6 +20,9 @@
             <td>{{product.val.price}}</td>
             <td>
                 <a [routerLink]="['/admin/products/', product.key]">Edit</a>
+            </td>
+            <td>
+                <button type="button" (click)="delete(product.key)" mat-raised-button color="warn">Delete</button>
             </td>
         </tr>
     </tbody>

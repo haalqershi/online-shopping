@@ -12,9 +12,13 @@ export class ProductsAdminComponent implements OnInit {
   products$: Observable<any[]>;
   constructor(private productService: ProductService) { 
     this.products$ = this.productService.getAll();
-    this.products$.forEach(x =>{
-      console.log(x);
-    })
+    // this.products$.forEach(x =>{
+    //   console.log(x);
+    // })
+  }
+
+  delete(productId: string){
+    this.productService.delete(productId).subscribe();
   }
 
   ngOnInit(): void {
