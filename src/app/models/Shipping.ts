@@ -1,8 +1,6 @@
 
-export interface Shipping{
-    name: string;
-    addressLine1: string;
-    addressLine2: string;
-    city: string;
-    zipCode: number;
+export class Shipping{
+    constructor(public name?: string, public addressLine1?: string, public addressLine2?: string, public city?: string, public zipCode?: number){
+
+    }
 }

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Payment } from '../models/payment';
 import { PaymentService } from '../payment.service';
+
 
 @Component({
   selector: 'app-payment',
@@ -9,8 +9,10 @@ import { PaymentService } from '../payment.service';
   styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent implements OnInit {
-  payment: Payment;
+  //payment: Payment;
   submitted = false;
+  @Input() payment!: Payment;
+  @Output() paymentChange = new EventEmitter<Payment>();
 
   constructor(private paymentService: PaymentService) {
     this.payment=new Payment();

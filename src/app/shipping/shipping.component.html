@@ -1,5 +1,5 @@
 <h2>Shipping Address</h2>
-<form #f="ngForm">
+<form #f="ngForm" >
     <div class="form-group">
       <label for="">Name</label>
       <input #name="ngModel" name="name" [(ngModel)]="shipping.name" type="text" class="form-control" required>
@@ -36,7 +36,4 @@
       </div>
     </div>
   </form>
-  <button 
-      [disabled]="!f.valid"
-     (click)="placeOrder()"
-     class="btn btn-primary">Place Order</button>
+  

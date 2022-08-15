@@ -1,5 +1,7 @@
+import { Shipping } from './../models/Shipping';
+import { Payment } from './../models/payment';
 import { ShoppingCart } from './../models/shopping-cart';
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth.service';
@@ -12,34 +14,12 @@ import { UserModel } from '../models/user-model';
   templateUrl: './shipping.component.html',
   styleUrls: ['./shipping.component.css']
 })
-export class ShippingComponent implements OnInit, OnDestroy {
+export class ShippingComponent {
 
-  shipping : any = {}; 
-  userSubscription!: Subscription;
-  currentUserId!: any;
-  @Input('cart') cart!: ShoppingCart;
+  @Input() shipping!: Shipping;
+  @Output() shippingChange = new EventEmitter<Shipping>();
 
   constructor(private orderService: OrderService, private authService: AuthService, private router: Router){
   }
 
-  ngOnInit(): void {
-    this.userSubscription = this.authService.user$.subscribe((user:any) => this.currentUserId = user.email);
-  }
-
-  placeOrder() {
-    this.authService.user$.subscribe((user:any) => {
-      console.log(user);
-      this.currentUserId = user.email;
-      let order = new Order(user.email, this.shipping, this.cart);
-      let result : any = this.orderService.placeOrder(order.getOrder());
-      this.router.navigate(['/order/confirmation', result.key]);
-    });
-   
-    // this.shoppingCartService.clearShoppingCart();
-    // this.router.navigate(['/order/confirmation', result.key]);
-  } 
-
-  ngOnDestroy(): void {
-    this.userSubscription.unsubscribe();
-  }
 }

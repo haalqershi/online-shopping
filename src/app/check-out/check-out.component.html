@@ -1,11 +1,18 @@
 
+  <div>
+    <button (click)="printAll()">Print All</button>
+  </div>
 
-<div class="row" *ngIf="shoppingCart$ | async as cart">
-  <div class="col-6" style="background: rgb(190, 190, 190);">
-     <app-payment></app-payment>
-     <app-shipping [cart]="cart"></app-shipping>
+<h1><button>{{counter}}</button></h1>
+<div class="row" *ngIf="cart">
+  <div  class="col-6" style="background: rgb(190, 190, 190);">
+     <app-payment [(payment)]="payment"></app-payment>
+     <app-shipping [(shipping)]="shipping"></app-shipping>
   </div>
   <div class="col-6">
-    <app-shopping-cart-items-summary [cart]="cart"></app-shopping-cart-items-summary>
+    <!-- <app-shopping-cart-items-summary [cart]="cart"></app-shopping-cart-items-summary> -->
   </div>
 </div>
+<button 
+     (click)="placeOrder()"
+     class="btn btn-primary">Place Order</button>
