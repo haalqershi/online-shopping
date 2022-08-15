@@ -45,11 +45,4 @@ export class CheckOutComponent implements OnInit{
   ngOnDestroy(): void {
     this.userSubscription.unsubscribe();
   }
-
-  printAll(){
-    console.log(this.payment);
-    console.log(this.shipping);
-  }
-
-
 }
