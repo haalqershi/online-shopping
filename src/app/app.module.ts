@@ -47,6 +47,11 @@ import { PaymentComponent } from './payment/payment.component';
 import { ShippingComponent } from './shipping/shipping.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import { OnlineShoppingHttpInterceptor } from './online-shopping-http-interceptor';
+import {MatTableModule} from '@angular/material/table';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatInputModule } from '@angular/material/input';
+import { MatSortModule } from '@angular/material/sort';
 
 
 const paths = [
@@ -153,7 +158,12 @@ const paths = [
     AngularFirestoreModule,
     FormsModule,
     MatBadgeModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatPaginatorModule,
+    MatInputModule,
+    MatSortModule
   ],
   providers: [ 
     AuthService,
