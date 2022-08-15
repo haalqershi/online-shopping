@@ -35,7 +35,7 @@ export class CheckOutComponent implements OnInit{
   placeOrder() {
       console.log("currentUser Id: " + this.currentUserId)
       console.log("items: " + this.cart.items)
-      let order = new Order(this.currentUserId, this.shipping, this.cart);
+      let order = new Order(this.currentUserId, this.shipping, this.cart, this.payment);
       this.orderService.placeOrder(order.getOrder()).then((res)  =>{
         const key = res.key;
         this.router.navigate(['/order/confirmation', key]);
