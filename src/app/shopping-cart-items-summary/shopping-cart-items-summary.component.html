@@ -6,7 +6,7 @@
         <li class="list-group-item" *ngFor="let item of cart.items">
             {{item.quantity}} x {{item.product.name}}
             <span>
-                {{item.totalPrice | currency:'USD': true}}
+                {{item.totalPrice | currency:'USD': '$'}}
             </span>
         </li>
         <li class="list-group-item total">

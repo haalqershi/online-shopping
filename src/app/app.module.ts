@@ -8,7 +8,7 @@ import { ProductService } from './product.service';
 import { AdminAuthGuardService } from './admin-auth-guard.service';
 import { AuthGuardService } from './auth-guard.service';
 import { environment } from './../environments/environment';
-import { NgModule } from '@angular/core';
+import { DEFAULT_CURRENCY_CODE, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -168,7 +168,8 @@ const paths = [
     HttpService,
     OrderHttpService,
     ProductHttpService,
-    {provide: HTTP_INTERCEPTORS, useClass : OnlineShoppingHttpInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass : OnlineShoppingHttpInterceptor, multi: true},
+    { provide: DEFAULT_CURRENCY_CODE, useValue: 'USD ' } 
   ],
   bootstrap: [AppComponent]
 })
