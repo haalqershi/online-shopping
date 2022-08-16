@@ -19,7 +19,7 @@ export class ProductsComponent implements OnInit {
   category: any;
   filteredProducts: any[] = [];
   shoppingCart$!: Observable<ShoppingCart>;
-
+  
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute,

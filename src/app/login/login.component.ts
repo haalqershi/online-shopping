@@ -11,6 +11,9 @@ import { AuthService } from '../auth.service';
 export class LoginComponent implements OnInit {
 
   private returnUrl: string = "";
+  public displayLoading: boolean = false;
+
+
   constructor(public authService: AuthService, private router: Router, private route: ActivatedRoute){
     if(this.route.snapshot.queryParams.hasOwnProperty('returnUrl')){
       this.returnUrl = this.route.snapshot.queryParams['returnUrl'];

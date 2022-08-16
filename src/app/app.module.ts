@@ -52,7 +52,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatInputModule } from '@angular/material/input';
 import { MatSortModule } from '@angular/material/sort';
-
+import { ImgSliderComponent } from './img-slider/img-slider.component';
+import { CustomFooterComponent } from './custom-footer/custom-footer.component';
+import { SignupComponent } from './signup/signup.component';
 
 const paths = [
   {
@@ -70,6 +72,10 @@ const paths = [
    {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'signup',
+    component: SignupComponent
   },
   {
     path: 'checkout',
@@ -140,7 +146,10 @@ const paths = [
     ShoppingCartItemsSummaryComponent,
     PaymentComponent,
     ShippingComponent,
-    OrderDetailsComponent
+    OrderDetailsComponent,
+    ImgSliderComponent,
+    CustomFooterComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-<div>
+<!-- <div>
     <form #f="ngForm" (ngSubmit)="login(f)">
         <input type="text" id="email" name="email" placeholder="Email" ngModel>
         <br>
@@ -6,4 +6,57 @@
         <br>
         <button type="submit">Login</button>
     </form>
-</div>
+</div> -->
+
+<div class="container" style="margin-top: 100px;">
+    <div class="d-flex justify-content-center h-50">
+      <div class="user_card">
+  
+        <div class="d-flex justify-content-center">
+  
+          <div style="margin-top: 10px;margin-bottom:-90px;">
+            <!-- <h3>Product Management System</h3> -->
+            <a href="products">
+              <img width="200" height="80" src="https://alqershi.com/logo.png" alt="project logo"
+                class="img-responsive mb-3">
+            </a>
+          </div>
+        </div>
+  
+        <div class="d-flex justify-content-center form_container">
+          <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+            <div class="input-group mb-3">
+              <div class="input-group-append">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+              </div>
+              <input type="text" class="form-control" name="email" placeholder="email" ngModel
+                #emailInput="ngModel" required>
+            </div>
+            <span class="help-block" style="color:red;" *ngIf="emailInput.invalid && emailInput.touched">
+              Email is required</span>
+            <div class="input-group mb-2">
+              <div class="input-group-append">
+                <span class="input-group-text"><i class="fas fa-key"></i></span>
+              </div>
+              <input type="password" class="form-control" name="password" placeholder="Password" ngModel
+                #passwordInput="ngModel" required>
+            </div>
+            <span class="help-block" style="color:red;" *ngIf="passwordInput.invalid && passwordInput.touched">
+            Password is required.</span>
+            <div class="d-flex justify-content-center mt-3 login_container">
+              <button type="submit" name="button" class="btn login_btn">
+                <i *ngIf="displayLoading" class="fas fa-spinner fa-spin"></i>&nbsp;&nbsp;
+                <span *ngIf="displayLoading">Loading...</span>
+                <span *ngIf="!displayLoading">Login</span>
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="mt-4">
+          <div class="d-flex justify-content-center links">
+            Don't have an account? <a routerLink="/signup" class="ml-2" style="color: #2C3E50;">Sign Up</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
