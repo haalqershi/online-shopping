@@ -55,6 +55,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { ImgSliderComponent } from './img-slider/img-slider.component';
 import { CustomFooterComponent } from './custom-footer/custom-footer.component';
 import { SignupComponent } from './signup/signup.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+
 
 const paths = [
   {
@@ -172,8 +174,9 @@ const paths = [
     MatFormFieldModule,
     MatPaginatorModule,
     MatInputModule,
-    MatSortModule
-  ],
+    MatSortModule,
+    NgxPaginationModule
+    ],
   providers: [ 
     AuthService,
     AuthGuardService,
