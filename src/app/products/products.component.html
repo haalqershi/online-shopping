@@ -1,6 +1,13 @@
 <app-img-slider></app-img-slider>
 
 <div class="container">
+  <input type="text" [(ngModel)]="search" name="search">
+  <h1>{{search}}</h1>
+  <form class="form-inline my-2 my-lg-0" style="margin-left: auto; margin-right: auto;">
+    <input type="search" style="width: 300px;" (ngModelChange)="searchForProducts(searchFor.value, category)" #searchFor="ngModel"
+      ngModel name="searchFor" id="searchName" class="form-control  mr-sm-2"
+      placeholder="Search Products..." required>
+  </form>
   <div class="row">
     <div class="col-3">
       <app-product-filter [category]="category"></app-product-filter>

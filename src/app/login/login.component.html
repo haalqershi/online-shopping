@@ -44,7 +44,8 @@
             <span class="help-block" style="color:red;" *ngIf="passwordInput.invalid && passwordInput.touched">
             Password is required.</span>
             <div class="d-flex justify-content-center mt-3 login_container">
-              <button type="submit" name="button" class="btn login_btn">
+              <button type="submit" [disabled]="loginForm.invalid || displayLoading " name="button"
+                class="btn login_btn">
                 <i *ngIf="displayLoading" class="fas fa-spinner fa-spin"></i>&nbsp;&nbsp;
                 <span *ngIf="displayLoading">Loading...</span>
                 <span *ngIf="!displayLoading">Login</span>

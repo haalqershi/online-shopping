@@ -14,7 +14,7 @@
           <!-- <form #registerForm="ngForm" (ngSubmit)="onRegister(registerForm.value)"> -->
           <form #registerForm="ngForm" (ngSubmit)="onRegister()">
 
-            <div class="input-group mb-3">
+            <!-- <div class="input-group mb-3">
               <div class="input-group-append">
                 <span class="input-group-text"><i class="fas fa-user"></i></span>
               </div>
@@ -32,7 +32,7 @@
                 #lastnameInput="ngModel" [(ngModel)]="newUser.lastName" required>
             </div>
             <span class="help-block" style="color:red;" *ngIf="lastnameInput.invalid && lastnameInput.touched">Please
-              enter last name.</span>
+              enter last name.</span> -->
   
               
             <div class="input-group mb-2">
@@ -85,4 +85,4 @@
     </div>
   </div>
 
-  <button routerLink="/reset">Reset Password</button>
+  <!-- <button routerLink="/reset">Reset Password</button> -->

@@ -20,6 +20,8 @@ export class ProductsComponent implements OnInit {
   filteredProducts: any[] = [];
   shoppingCart$!: Observable<ShoppingCart>;
   p:any;
+  search: string = '';
+  isSearch: boolean = false;
 
   constructor(
     private productService: ProductService,
@@ -51,5 +53,28 @@ export class ProductsComponent implements OnInit {
         this.filtering()
       });
     });
+  }
+
+  public searchForProducts(searchFor: string, searchCategory: string): void {
+    let searchResult: Product[] = [];
+    
+    
+    
+    for (const product of this.products) {
+      if(searchCategory && searchCategory.length > 0){
+        if (product.category.toLocaleLowerCase() === searchCategory.toLocaleLowerCase() 
+            && product.name.toLocaleLowerCase().indexOf(searchFor.toLocaleLowerCase()) !== -1) {
+          searchResult.push(product);
+        }
+      }else{
+        if (product.name.toLocaleLowerCase().indexOf(searchFor.toLocaleLowerCase()) !== -1) {
+          searchResult.push(product);
+        }
+      }
+    }
+
+    this.isSearch = true;
+    this.filteredProducts = searchResult;
+
   }
 }
