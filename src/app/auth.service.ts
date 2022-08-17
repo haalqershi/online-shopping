@@ -17,6 +17,12 @@ import { UserModel } from './models/user-model';
   providedIn: 'root'
 })
 export class AuthService {
+  resetPassword(email: string) {
+    return this.httpService.resetPassword(email);
+  }
+  register(email: any, pwd: any, name: any) {
+    return this.httpService.register(email, pwd, name);
+  }
 
   expiresIn!: any;
   autoLogin() {
@@ -73,9 +79,9 @@ export class AuthService {
   // }
 
   login(loginData: any){
-    let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
-   localStorage.setItem('returnUrl', returnUrl);
-   console.log(loginData);
+  //   let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
+  //  localStorage.setItem('returnUrl', returnUrl);
+  //  console.log(loginData);
     return this.httpService.login(loginData).pipe( 
       catchError(error => this.handleError(error)),
       tap((res : any) => this.handleAuthenticatin(res))
@@ -104,5 +110,9 @@ export class AuthService {
     return this.user$.pipe(switchMap(user => {
       return user != null ? this.userService.get(user.email).valueChanges() : of(null);
     }))
+  }
+
+  isAdmin(){
+    return true;
   }
 }

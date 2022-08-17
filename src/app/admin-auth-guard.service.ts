@@ -1,3 +1,4 @@
+import { UserModel } from './models/user-model';
 import { UserService } from './user.service';
 import { AuthService } from './auth.service';
 import { Injectable } from '@angular/core';
@@ -16,10 +17,6 @@ export class AdminAuthGuardService implements CanActivate{
       private userService: UserService
     ) { }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    return this.authService.user$
-    // .pipe(switchMap((curUser:any) => this.userService.get(curUser.email).valueChanges()))
-    // .pipe(map((appUser: any) => appUser!.isAdmin || false));
-    .pipe(map((appUser: any) => appUser));
-
+    return this.authService.isAdmin();
   }
 }

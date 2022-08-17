@@ -56,6 +56,7 @@ import { ImgSliderComponent } from './img-slider/img-slider.component';
 import { CustomFooterComponent } from './custom-footer/custom-footer.component';
 import { SignupComponent } from './signup/signup.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 
 const paths = [
@@ -78,6 +79,10 @@ const paths = [
   {
     path: 'signup',
     component: SignupComponent
+  },
+  {
+    path: 'reset',
+    component: ResetPasswordComponent
   },
   {
     path: 'checkout',
@@ -151,7 +156,8 @@ const paths = [
     OrderDetailsComponent,
     ImgSliderComponent,
     CustomFooterComponent,
-    SignupComponent
+    SignupComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,

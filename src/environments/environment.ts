@@ -5,6 +5,8 @@
 export const environment = {
   production: false,
   signUrl: "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=",
+  signUpUrl: "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=",
+  resetPwdUrl: "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=",
   firebaseConfig : {
     apiKey: "AIzaSyCiBz0GEQX5DoteSVZEVtWIqIaMuvF6yQA",
     authDomain: "online-shopping-fe43b.firebaseapp.com",

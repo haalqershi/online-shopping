@@ -34,4 +34,9 @@ export class NavbarComponent implements OnInit {
   logout() {
     this.authService.logout();
   }
+
+  isAdmin(){
+    return this.authService.isAdmin();
+  }
+
 }
