@@ -17,6 +17,7 @@ import { UserModel } from './models/user-model';
   providedIn: 'root'
 })
 export class AuthService {
+
   resetPassword(email: string) {
     return this.httpService.resetPassword(email);
   }
