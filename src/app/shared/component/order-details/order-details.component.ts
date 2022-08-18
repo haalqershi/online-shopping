@@ -13,7 +13,7 @@ import { Observable, pipe, map, Subscription } from 'rxjs';
 export class OrderDetailsComponent implements OnInit, OnDestroy {
   
   orderId: any;
-  order: OrderModel = {
+  order$: OrderModel = {
     datePlaced: 0,
     items: [],
     shipping: undefined,
@@ -27,16 +27,12 @@ export class OrderDetailsComponent implements OnInit, OnDestroy {
 ) { 
  
 }
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
 
-  ngOnInit()  {
-    this.orderId = this.route.snapshot.paramMap.get('id');
-    this.subscription = this.orderService.getOrderById(this.orderId).subscribe((res:any) =>{
-      let obj = new OrderModel(res.datePlaced, res.items, res.shpping, res.userId);
-      this.order = obj;
-      console.log(obj.datePlaced);
+ngOnInit()  {
+  this.orderId = this.route.snapshot.paramMap.get('id');
+  this.subscription = this.orderService.getOrderById(this.orderId).subscribe((res:any) =>{
+    let obj = new OrderModel(res.datePlaced, res.items, res.shpping, res.userId);
+    this.order$ = obj;
     });
   }
 
@@ -47,6 +43,9 @@ export class OrderDetailsComponent implements OnInit, OnDestroy {
     }
     return total;
   }
-
-
+  
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+  
 }

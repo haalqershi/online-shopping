@@ -18,7 +18,16 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { OnlineShoppingHttpInterceptor } from './online-shopping-http-interceptor';
 import { ProductsComponent } from './shopping/component/products/products.component';
 
-const paths = [ { path: '',component: ProductsComponent}]
+const paths = [ 
+  { path: ''
+    ,component: ProductsComponent
+  },
+  {
+    path: "admin",
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)    
+  },
+  
+]
 
 @NgModule({
   declarations: [
@@ -27,7 +36,6 @@ const paths = [ { path: '',component: ProductsComponent}]
   imports: [
     BrowserModule,
     SharedModule,
-    AdminModule,
     ShoppingModule,
     BaseModule,
     NgbModule,

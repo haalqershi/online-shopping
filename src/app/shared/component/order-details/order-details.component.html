@@ -1,9 +1,9 @@
 <div class="card">
     <div class="card-body">
       <h5 class="card-title">Your Order Summary</h5>
-      <p class="card-text" *ngIf="order && order.items">There are {{ order.items.length}} items in your order.</p>
-      <ul class="list-group list-group-flush"*ngIf="order && order.items">
-          <li class="list-group-item" *ngFor="let item of order.items">
+      <p class="card-text" *ngIf="order$ && order$.items">There are {{ order$.items.length}} items in your order.</p>
+      <ul class="list-group list-group-flush"*ngIf="order$ && order$.items">
+          <li class="list-group-item" *ngFor="let item of order$.items">
               {{item.quantity}} x {{item.product.name}}
               <span>
                   {{item.totalPrice | currency:'USD': true}}
@@ -13,11 +13,10 @@
           <li class="list-group-item total">
             Total Price
             <span>
-                {{getTotalPrice(order.items)| currency:'USD': true}}
+                {{getTotalPrice(order$.items)| currency:'USD': true}}
             </span>
         </li>
       </ul>
     </div>
   </div>
-  <!-- <button routerLink="/admin/orders">Orders</button> -->
   
