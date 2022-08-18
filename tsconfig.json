@@ -2,7 +2,6 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -21,7 +20,23 @@
     "lib": [
       "es2020",
       "dom"
-    ]
+    ],
+    "baseUrl": "./src",
+    "paths": {
+      "shared/*":[
+        "app/shared/*"
+      ],
+      "admin/*":[
+        "app/admin/*"
+      ],
+      "shopping/*":[
+        "app/shopping/*"
+      ],
+      "base/*":[
+        "app/base/*"
+      ]
+    },
+    
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
