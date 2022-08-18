@@ -12,15 +12,13 @@ import { Observable, switchMap } from 'rxjs';
 export class OrdersComponent implements OnInit {
   orders$: any;
 
-  constructor(private orderService: OrderService) { 
-    this.orders$ = this.orderService.getOrders();
+  constructor(private orderService: OrderService, private authService: AuthService) { 
+    this.orders$ = this.authService.user$.pipe(switchMap((u:any) => {
+      return this.orderService.getOrdersByUser(u.email)
+    }));
   }
   ngOnInit(): void {
   }
 
-  deleteOrder(orderId: any){
-    console.log(orderId);
-    this.orderService.deleteOrder(orderId);
-  }
-
+  
 }

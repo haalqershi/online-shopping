@@ -39,6 +39,7 @@ export class OrderService {
     return placedOrder;
   }
   getOrdersByUser(userId: string) {
+    // userId = "alqershi.hesham@gmail.com";
     return this.db.list('/orders', ref =>
     ref.orderByChild('userId').equalTo(userId)).snapshotChanges()
     .pipe(

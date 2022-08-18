@@ -10,7 +10,7 @@
 
   <div>
     <label for="CardNumber">Card Holder Name</label>
-    <input #nameOnCard="ngModel" pattern="^\d{16}$" name="nameOnCard" [(ngModel)]="payment.nameOnCard" required
+    <input #nameOnCard="ngModel" name="nameOnCard" [(ngModel)]="payment.nameOnCard" required
       [class.is-invalid]="nameOnCard.invalid && nameOnCard.touched" class="form-control"
       placeholder="Name on Card" />
 

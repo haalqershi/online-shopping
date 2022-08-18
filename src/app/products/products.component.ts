@@ -20,7 +20,6 @@ export class ProductsComponent implements OnInit {
   filteredProducts: any[] = [];
   shoppingCart$!: Observable<ShoppingCart>;
   p:any;
-  search: string = '';
   isSearch: boolean = false;
 
   constructor(
