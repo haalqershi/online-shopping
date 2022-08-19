@@ -20,11 +20,10 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   resetPassword(){
-    this.authService.resetPassword("alqershi.hesham@gmail.com")
+    this.authService.resetPassword(this.email)
     .subscribe(res => {
       this.resetForm = true;
       this.message = false;
-      // this.router.navigate(['/login']);
     });
   }
 

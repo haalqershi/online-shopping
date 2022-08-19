@@ -1,13 +1,7 @@
-import { AuthService } from 'shared/services/auth.service';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpParams, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {
-  HttpRequest,
-  HttpHandler,
-  HttpEvent,
-  HttpInterceptor,
-  HttpParams
-} from '@angular/common/http';
-import { exhaustMap, Observable, pipe, take } from 'rxjs';
+import { exhaustMap, Observable, take } from 'rxjs';
+import { AuthService } from 'shared/services/auth.service';
 
 @Injectable()
 export class OnlineShoppingHttpInterceptor implements HttpInterceptor {
@@ -19,7 +13,6 @@ export class OnlineShoppingHttpInterceptor implements HttpInterceptor {
       take(1),
       exhaustMap(user => {
         if(!user){
-          console.log("interceptor is firing");
           return next.handle(request);
         }
         const req = request.clone({

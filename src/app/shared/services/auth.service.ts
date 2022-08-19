@@ -1,17 +1,12 @@
-import { HttpService } from 'shared/services/http.service';
-import { AppUser } from 'shared/models/app-user';
-import { UserService } from 'shared/services/user.service';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { ActivatedRoute, Router } from '@angular/router';
-import * as firebase from '@firebase/auth';
-import { BehaviorSubject, Observable, catchError} from 'rxjs';
-import { map, switchMap, tap } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { BehaviorSubject, catchError, of } from 'rxjs';
+import { switchMap, tap } from 'rxjs/operators';
 import { AuthResponse } from 'shared/models/auth-response';
 import { UserModel } from 'shared/models/user-model';
-
-
+import { HttpService } from 'shared/services/http.service';
+import { UserService } from 'shared/services/user.service';
 
 @Injectable({
   providedIn: 'root'

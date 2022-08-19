@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ItemQuantityComponent } from './component/item-quantity/item-quantity.component';
 import { OrderDetailsComponent } from './component/order-details/order-details.component';
@@ -7,6 +8,7 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
 import { CategoryService } from './services/category.service';
 import { HttpService } from './services/http.service';
+import { OnlineShoppingHttpInterceptor } from './services/online-shopping-http-interceptor';
 import { OrderHttpService } from './services/order-http.service';
 import { OrderService } from './services/order.service';
 import { PaymentService } from './services/payment.service';
@@ -41,7 +43,8 @@ import { UserService } from './services/user.service';
     PaymentService,
     HttpService,
     OrderHttpService,
-    ProductHttpService
+    ProductHttpService,
+    {provide: HTTP_INTERCEPTORS, useClass : OnlineShoppingHttpInterceptor, multi: true},
   ]
 })
 export class SharedModule { }

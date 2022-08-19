@@ -11,7 +11,6 @@ export class HttpService {
   constructor(private http: HttpClient) { }
 
   resetPassword(userEmail: string) {
-    console.log(userEmail);
     return this.http.post<string>(environment.resetPwdUrl + environment.firebaseConfig.apiKey, {
       requestType: "PASSWORD_RESET",
       email: userEmail,

@@ -57,8 +57,6 @@ export class ProductsComponent implements OnInit {
   public searchForProducts(searchFor: string, searchCategory: string): void {
     let searchResult: Product[] = [];
     
-    
-    
     for (const product of this.products) {
       if(searchCategory && searchCategory.length > 0){
         if (product.category.toLocaleLowerCase() === searchCategory.toLocaleLowerCase() 

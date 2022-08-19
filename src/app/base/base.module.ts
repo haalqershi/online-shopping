@@ -40,7 +40,6 @@ const paths = [
   declarations: [
     CustomFooterComponent,
     HomeComponent,
-    HomeComponent,
     NavbarComponent,
     LoginComponent,
     CustomFooterComponent,

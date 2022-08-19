@@ -1,7 +1,3 @@
-import { BaseModule } from './base/base.module';
-import { ShoppingModule } from './shopping/shopping.module';
-import { AdminModule } from './admin/admin.module';
-import { SharedModule } from './shared/shared.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { environment } from './../environments/environment';
 import { DEFAULT_CURRENCY_CODE, NgModule } from '@angular/core';
@@ -15,8 +11,11 @@ import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
-import { OnlineShoppingHttpInterceptor } from './online-shopping-http-interceptor';
+import { OnlineShoppingHttpInterceptor } from 'shared/services/online-shopping-http-interceptor';
 import { ProductsComponent } from './shopping/component/products/products.component';
+import { SharedModule } from 'shared/shared.module';
+import { BaseModule } from './base/base.module';
+import { ShoppingModule } from './shopping/shopping.module';
 
 const paths = [ 
   { path: ''
@@ -49,7 +48,6 @@ const paths = [
     HttpClientModule,
     ],
   providers: [ 
-    {provide: HTTP_INTERCEPTORS, useClass : OnlineShoppingHttpInterceptor, multi: true},
     { provide: DEFAULT_CURRENCY_CODE, useValue: 'USD ' } 
   ],
   bootstrap: [AppComponent]
