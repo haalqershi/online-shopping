@@ -25,7 +25,7 @@ export class SignupComponent{
        let fullname = this.newUser.firstName + this.newUser.lastName;
     this.authService.register(this.newUser.email, this.newUser.password1, fullname)
     .subscribe(res => {
-      this.router.navigate(['/login']);
+      this.router.navigate(['/auth/login']);
     });
   }
 

@@ -1,4 +1,5 @@
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthModule } from './auth/auth.module';
+import { HttpClientModule } from '@angular/common/http';
 import { environment } from './../environments/environment';
 import { DEFAULT_CURRENCY_CODE, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -11,7 +12,6 @@ import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
-import { OnlineShoppingHttpInterceptor } from 'shared/services/online-shopping-http-interceptor';
 import { ProductsComponent } from './shopping/component/products/products.component';
 import { SharedModule } from 'shared/shared.module';
 import { BaseModule } from './base/base.module';
@@ -22,10 +22,9 @@ const paths = [
     ,component: ProductsComponent
   },
   {
-    path: "admin",
-    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)    
-  },
-  
+    path: "auth",
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)    
+  }
 ]
 
 @NgModule({

@@ -1,10 +1,8 @@
-import { ShoppingCart } from 'shared/models/shopping-cart';
-import { ShoppingCartService } from 'shared/services/shopping-cart.service';
-import { AppUser } from 'shared/models/app-user';
-import { AuthService } from 'shared/services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { ShoppingCart } from 'shared/models/shopping-cart';
+import { AuthService } from 'shared/services/auth.service';
+import { ShoppingCartService } from 'shared/services/shopping-cart.service';
 
 @Component({
   selector: 'app-navbar',

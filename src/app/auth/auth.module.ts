@@ -1,5 +1,9 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { LoginComponent } from './component/login/login.component';
+import { ResetPasswordComponent } from './component/reset-password/reset-password.component';
+import { SignupComponent } from './component/signup/signup.component';
+import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
@@ -8,36 +12,35 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { CustomFooterComponent } from './component/custom-footer/custom-footer.component';
-import { HomeComponent } from './component/home/home.component';
-import { NavbarComponent } from './component/navbar/navbar.component';
-
-
 const paths = [
-
   {
-    path: "auth",
-    loadChildren: () => import('./../auth/auth.module').then(m => m.AuthModule)    
-  },
+   path: 'login',
+   component: LoginComponent
+ },
+ {
+   path: 'signup',
+   component: SignupComponent
+ },
+ {
+   path: 'reset',
+   component: ResetPasswordComponent
+ },
 ]
-
 
 @NgModule({
   declarations: [
-    CustomFooterComponent,
-    HomeComponent,
-    NavbarComponent,
-    CustomFooterComponent,
+    LoginComponent,
+    SignupComponent,
+    ResetPasswordComponent
   ],
   imports: [
     CommonModule,
+    RouterModule.forChild(paths),
     FormsModule,
     NgbModule,
     MatTableModule,
-    RouterModule.forChild(paths),
     MatFormFieldModule,
     MatInputModule,
     MatBadgeModule,
@@ -45,13 +48,13 @@ const paths = [
     MatIconModule,
     MatButtonModule,
   ],
-  exports:[
-    CustomFooterComponent,
-    HomeComponent,
-    HomeComponent,
-    NavbarComponent,
-    CustomFooterComponent,
+  exports: [
+    LoginComponent,
+    SignupComponent,
+    ResetPasswordComponent
   ],
-  providers:[]
+  providers: [
+
+  ]
 })
-export class BaseModule { }
+export class AuthModule { }
