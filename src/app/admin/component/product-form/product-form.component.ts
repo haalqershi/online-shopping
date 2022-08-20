@@ -1,3 +1,4 @@
+import { NotifierService } from 'angular-notifier';
 import { Product } from 'shared/models/Product';
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'shared/services/product.service';
@@ -19,7 +20,8 @@ export class ProductFormComponent implements OnInit {
   constructor(private categoryService: CategoryService,
               private productService: ProductService,
               private router: Router,
-              private route : ActivatedRoute
+              private route : ActivatedRoute,
+              private notifierService: NotifierService
     ) { 
     this.categories$ = categoryService.getAll();
     this.productId = this.route.snapshot.paramMap.get('productId');
@@ -35,21 +37,26 @@ export class ProductFormComponent implements OnInit {
 
   save(newProduct: Product){
     if(this.productId){
-      console.log(newProduct);
-      this.productService.update(this.productId, newProduct).subscribe();
+      this.productService.update(this.productId, newProduct).subscribe(() =>{
+        this.router.navigate(['/admin/products']);
+        this.notifierService.notify('success', 'Product was updated successfully');
+      });
     }else{
-      this.productService.create(newProduct).subscribe();
+      this.productService.create(newProduct).subscribe(() =>{
+        this.router.navigate(['/admin/products']);
+        this.notifierService.notify('success', 'Product was added successfully');
+      });
     }
-    this.router.navigate(['/admin/products']);
-   
   }
 
   delete(){
     if(!confirm('Do you want to delete this Product?')){
       return;
+    }else{
+      this.productService.delete(this.productId).subscribe(() =>{
+        this.notifierService.notify('success', 'Product was delete successfully');
+      });
     }
-    this.productService.delete(this.productId).subscribe();
-    this.router.navigate(['/admin/products']);
   }
 
 }

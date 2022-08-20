@@ -5,17 +5,19 @@ import { Product } from 'shared/models/Product';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
+import { NotifierService } from 'angular-notifier';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  constructor(private db: AngularFireDatabase, private productHttpService: ProductHttpService, private router: Router) { }
+  constructor(private db: AngularFireDatabase, private productHttpService: ProductHttpService, private router: Router, private notifierService: NotifierService) { }
 
   create(newProduct: Product) {
-    // return this.db.list('/products').push(newProduct);
-    return this.productHttpService.addProduct(newProduct)
+    return this.productHttpService.addProduct(newProduct).pipe(
+      catchError(error => this.handleError(error))
+    )
   }
 
   getAll() {
@@ -29,14 +31,12 @@ export class ProductService {
             val: action.payload.val()
         }));
     }));
-    //this.productHttpService.getAllProducts().subscribe();
   }
 
   update(productId: any, product: Product){
     return this.productHttpService.updateProduct(productId, product).pipe(
       catchError(error => this.handleError(error))
     )
-    // return this.db.object('/products/'+productId).update(product);
   }
 
 
@@ -44,18 +44,19 @@ export class ProductService {
     return this.productHttpService.getProduct(productId).pipe(
       catchError(error => this.handleError(error))
     )
-    // return this.db.object('/products/' + productId);
   }
 
   delete(productId: any){
     return this.productHttpService.deleteProduct(productId).pipe(
       catchError(error => this.handleError(error))
     )
-    // return this.db.object('/products/'+ productId).remove();
   }
 
-
-  handleError(error: Error){
-    return 'error'
+  private handleError(error: any) {
+    if (error.status === 400)
+      this.notifierService.notify('warning', 'Invalid Credentials');
+    else if (error.status === 404)
+      this.notifierService.notify('error', error.error.error.message);
+    return error;
   }
 }

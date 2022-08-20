@@ -4,6 +4,7 @@ import {AfterViewInit, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
+import { NotifierService } from 'angular-notifier';
 
 export interface UserData {
   id: string;
@@ -27,11 +28,15 @@ export class ProductsAdminComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private productService: ProductService) {   
+  constructor(private productService: ProductService, private notifierService: NotifierService) {   
   }
 
   delete(productId: string){
+    if(!confirm('Do you want to delete this Product?')){
+      return;
+    }
     this.productService.delete(productId).subscribe();
+    this.notifierService.notify('success', 'Product was delete successfully');
   }
 
   ngOnInit(): void {

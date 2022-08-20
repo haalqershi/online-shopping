@@ -24,6 +24,7 @@
     "@angular/router": "^14.1.0",
     "@ng-bootstrap/ng-bootstrap": "^13.0.0",
     "@popperjs/core": "^2.10.2",
+    "angular-notifier": "^11.0.0",
     "bootstrap": "^5.2.0",
     "firebase": "^9.9.1",
     "font-awesome": "^4.7.0",

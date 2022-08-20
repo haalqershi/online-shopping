@@ -1,4 +1,3 @@
-import { AuthModule } from './auth/auth.module';
 import { HttpClientModule } from '@angular/common/http';
 import { environment } from './../environments/environment';
 import { DEFAULT_CURRENCY_CODE, NgModule } from '@angular/core';
@@ -16,6 +15,8 @@ import { ProductsComponent } from './shopping/component/products/products.compon
 import { SharedModule } from 'shared/shared.module';
 import { BaseModule } from './base/base.module';
 import { ShoppingModule } from './shopping/shopping.module';
+import { NotifierModule } from 'angular-notifier';
+
 
 const paths = [ 
   { path: ''
@@ -45,6 +46,7 @@ const paths = [
     AngularFireStorageModule,
     AngularFirestoreModule,
     HttpClientModule,
+    NotifierModule
     ],
   providers: [ 
     { provide: DEFAULT_CURRENCY_CODE, useValue: 'USD ' } 
