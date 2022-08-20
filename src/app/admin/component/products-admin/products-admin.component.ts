@@ -1,7 +1,5 @@
-import { Product } from 'shared/models/Product';
 import { ProductService } from 'shared/services/product.service';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import {AfterViewInit, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
@@ -49,7 +47,6 @@ export class ProductsAdminComponent implements OnInit, AfterViewInit {
         tempUsers['name'] = products[i].val.name;
         tempUsers['price'] = products[i].val.price;
         tempUsers['category'] =products[i].val.category;
-        // products[i].val.join(products[i].key);
         allProducts.push(tempUsers);
 
       }

@@ -8,21 +8,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
 import { CustomFooterComponent } from './component/custom-footer/custom-footer.component';
 import { HomeComponent } from './component/home/home.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
 
-
-const paths = [
-
-  {
-    path: "auth",
-    loadChildren: () => import('./../auth/auth.module').then(m => m.AuthModule)    
-  },
-]
+const paths : Routes = [{ path: "",component: HomeComponent}];
 
 
 @NgModule({

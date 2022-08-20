@@ -1,5 +1,3 @@
-import { Order } from 'shared/models/order';
-import { pipe } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from 'shared/services/order.service';
 

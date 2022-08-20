@@ -1,9 +1,7 @@
-import { UserModel } from 'shared/models/user-model';
 import { UserService } from 'shared/services/user.service';
 import { AuthService } from 'shared/services/auth.service';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
 
 
