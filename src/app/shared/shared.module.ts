@@ -23,12 +23,11 @@ import { UserService } from './services/user.service';
     ItemQuantityComponent,
     OrderDetailsComponent,
     ProductTemplateComponent
-
   ],
   imports: [
     CommonModule
   ],
-  exports:[
+  exports: [
     ItemQuantityComponent,
     OrderDetailsComponent,
     ProductTemplateComponent
@@ -44,7 +43,7 @@ import { UserService } from './services/user.service';
     HttpService,
     OrderHttpService,
     ProductHttpService,
-    {provide: HTTP_INTERCEPTORS, useClass : OnlineShoppingHttpInterceptor, multi: true},
+    { provide: HTTP_INTERCEPTORS, useClass: OnlineShoppingHttpInterceptor, multi: true },
   ]
 })
 export class SharedModule { }

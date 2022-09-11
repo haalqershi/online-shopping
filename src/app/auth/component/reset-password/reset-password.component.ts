@@ -1,30 +1,35 @@
+import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { AuthService } from 'shared/services/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-reset-password',
   templateUrl: './reset-password.component.html',
   styleUrls: ['./reset-password.component.css']
 })
-export class ResetPasswordComponent implements OnInit {
+export class ResetPasswordComponent implements OnInit, OnDestroy {
 
   email!: string;
   displayLoading = '';
-  resetForm  = false;
+  resetForm = false;
   message = true;
+  subscription!: Subscription;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
   }
 
-  resetPassword(){
-    this.authService.resetPassword(this.email)
-    .subscribe(res => {
-      this.resetForm = true;
-      this.message = false;
-    });
+  resetPassword() {
+    this.subscription = this.authService.resetPassword(this.email)
+      .subscribe(() => {
+        this.resetForm = true;
+        this.message = false;
+      });
   }
 
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 }

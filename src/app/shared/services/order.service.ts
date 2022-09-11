@@ -1,22 +1,22 @@
 import { OrderHttpService } from 'shared/services/order-http.service';
 import { ShoppingCartService } from 'shared/services/shopping-cart.service';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { Injectable } from '@angular/core';
-import { map } from 'rxjs';
+import { Injectable, OnInit, OnDestroy } from '@angular/core';
+import { map, Subscription } from 'rxjs';
 import { NotifierService } from 'angular-notifier';
 
 @Injectable({
   providedIn: 'root'
 })
-export class OrderService {
-
+export class OrderService implements OnDestroy {
+  placeOrderSubscription!: Subscription;
   constructor(private db: AngularFireDatabase, private shoppingCartService: ShoppingCartService, private orderHttpService: OrderHttpService, private notifierService: NotifierService) { }
 
   getOrderById(orderId: any) {
     return this.orderHttpService.getAllOrderById(orderId);
   }
   deleteOrder(orderId: string) {
-    this.orderHttpService.deleteOrder(orderId).subscribe(()=>{
+    this.placeOrderSubscription = this.orderHttpService.deleteOrder(orderId).subscribe(() => {
       this.notifierService.notify('success', 'Order was deleted successfully!');
     });
   }
@@ -53,5 +53,8 @@ export class OrderService {
         }));
   }
 
+  ngOnDestroy(): void {
+    this.placeOrderSubscription.unsubscribe();
+  }
 
 }

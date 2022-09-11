@@ -8,28 +8,28 @@ import { Router } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   constructor(public AuthService: AuthService,
-              public router: Router,
-              public userService: UserService){
-    AuthService.user$.subscribe((user:any) =>{
-      if(user){
-        userService.save(user);
-        let returnUrl = localStorage.getItem('returnUrl') || '/';
-        this.router.navigateByUrl(returnUrl);
-      }
-    })
+    public router: Router,
+    public userService: UserService) {
+    // AuthService.user$.subscribe((user:any) =>{
+    //   if(user){
+    //     userService.save(user);
+    //     let returnUrl = localStorage.getItem('returnUrl') || '/';
+    //     this.router.navigateByUrl(returnUrl);
+    //   }
+    // })
   }
 
   userEmail: string = '';
   isLoggedIn: boolean = false;
   ngOnInit(): void {
     this.AuthService.user$.subscribe(
-      user=>{
-        if(user){
+      user => {
+        if (user) {
           this.userEmail = user.email;
           this.isLoggedIn = true;
-        }else{
+        } else {
           this.isLoggedIn = false;
         }
       }
@@ -37,5 +37,5 @@ export class AppComponent implements OnInit{
     this.AuthService.autoLogin();
   }
 
-  
+
 }

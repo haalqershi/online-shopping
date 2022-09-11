@@ -5,7 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule } from '@angular/router';
+import { PreloadAllModules, RouterModule } from '@angular/router';
 import { AngularFireModule } from "@angular/fire/compat";
 import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
@@ -18,13 +18,15 @@ import { ShoppingModule } from './shopping/shopping.module';
 import { NotifierModule } from 'angular-notifier';
 
 
-const paths = [ 
-  { path: ''
-    ,component: ProductsComponent
+const paths = [
+  {
+    path: ''
+    , component: ProductsComponent
   },
   {
     path: "auth",
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)    
+
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   }
 ]
 
@@ -39,7 +41,9 @@ const paths = [
     BaseModule,
     NgbModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(paths),
+    RouterModule.forRoot(paths, {
+      preloadingStrategy: PreloadAllModules
+    }),
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
@@ -47,9 +51,9 @@ const paths = [
     AngularFirestoreModule,
     HttpClientModule,
     NotifierModule
-    ],
-  providers: [ 
-    { provide: DEFAULT_CURRENCY_CODE, useValue: 'USD ' } 
+  ],
+  providers: [
+    { provide: DEFAULT_CURRENCY_CODE, useValue: 'USD ' }
   ],
   bootstrap: [AppComponent]
 })

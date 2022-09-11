@@ -12,14 +12,10 @@ export class SignupComponent{
 
   public displayLoading: boolean = false;
   newUser : Signup = new Signup();
-
   private returnUrl: string = "";
-
 
   constructor(public authService: AuthService, private router: Router){
   }
-
-
 
   onRegister(){
        let fullname = this.newUser.firstName + this.newUser.lastName;

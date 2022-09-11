@@ -6,13 +6,13 @@ import { AuthService } from 'shared/services/auth.service';
 @Injectable()
 export class OnlineShoppingHttpInterceptor implements HttpInterceptor {
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return this.authService.user$.pipe(
       take(1),
       exhaustMap(user => {
-        if(!user){
+        if (!user) {
           return next.handle(request);
         }
         const req = request.clone({
@@ -21,7 +21,7 @@ export class OnlineShoppingHttpInterceptor implements HttpInterceptor {
             'auth', user.token ? user.token : ''
           )
         })
-        console.log("request data "+ req);
+        console.log("request data " + req);
         return next.handle(request);
       })
     )
